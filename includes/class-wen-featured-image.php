@@ -155,8 +155,10 @@ class Wen_Featured_Image {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-    $this->loader->add_filter( 'manage_posts_columns', $plugin_admin, 'posts_column_head' );
-    $this->loader->add_action( 'manage_posts_custom_column', $plugin_admin, 'posts_column_content', 10, 2 );
+    $this->loader->add_filter( 'manage_post_posts_columns', $plugin_admin, 'posts_column_head' );
+    $this->loader->add_filter( 'manage_page_posts_columns', $plugin_admin, 'posts_column_head' );
+    $this->loader->add_action( 'manage_post_posts_custom_column', $plugin_admin, 'posts_column_content', 10, 2 );
+    $this->loader->add_action( 'manage_page_posts_custom_column', $plugin_admin, 'posts_column_content', 10, 2 );
 
 	}
 
