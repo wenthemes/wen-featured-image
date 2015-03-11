@@ -99,5 +99,27 @@ class Wen_Featured_Image_Admin {
 		wp_enqueue_script( $this->wen_featured_image, plugin_dir_url( __FILE__ ) . 'js/wen-featured-image-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+  function posts_column_head( $columns ){
+
+    $columns['wfi_image'] = __( 'Featured Image', 'wen-featured-image' );
+
+    return $columns;
+
+  }
+  function posts_column_content( $column, $post_ID ){
+
+    if ( 'wfi_image' == $column ) {
+        $post_featured_image = '';
+        $post_thumbnail_id = get_post_thumbnail_id($post_ID);
+        if ($post_thumbnail_id) {
+            $post_thumbnail_img = wp_get_attachment_image_src( $post_thumbnail_id, 'thumbnail' );
+            $post_featured_image = $post_thumbnail_img[0];
+        }
+        if ( $post_featured_image ) {
+            echo '<img src="' . $post_featured_image . '" style="max-width:100px;"/>';
+        }
+    }
+
+  }
 
 }
