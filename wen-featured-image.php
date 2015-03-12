@@ -30,6 +30,13 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// Define
+define( 'WEN_FEATURED_IMAGE_NAME', 'WEN Featured Image' );
+define( 'WEN_FEATURED_IMAGE_SLUG', 'wen-featured-image' );
+define( 'WEN_FEATURED_IMAGE_BASENAME', basename( dirname( __FILE__ ) ) );
+define( 'WEN_FEATURED_IMAGE_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
+define( 'WEN_FEATURED_IMAGE_URL', rtrim( plugin_dir_url( __FILE__ ), '/' ) );
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-wen-featured-image-activator.php

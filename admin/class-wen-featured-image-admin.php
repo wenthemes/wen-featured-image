@@ -116,7 +116,10 @@ class Wen_Featured_Image_Admin {
             $post_featured_image = $post_thumbnail_img[0];
         }
         if ( $post_featured_image ) {
-            echo '<img src="' . $post_featured_image . '" style="max-width:100px;"/>';
+          echo '<img src="' . esc_url( $post_featured_image ) . '" style="max-width:100px;"/>';
+        }
+        else{
+          echo '<img src="' . esc_url( WEN_FEATURED_IMAGE_URL . '/admin/images/no-image.png' ) . '" />';
         }
     }
 
