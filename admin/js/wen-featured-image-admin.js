@@ -4,6 +4,29 @@ var wfi_file_frame;
 
   jQuery(document).ready(function($) {
 
+    // Delete
+    jQuery(document).on('click', 'a.wfi-btn-remove', function( event ){
+
+      var $this = $(this);
+      event.preventDefault();
+
+      var confirmation = confirm('Are you sure?');
+      if ( ! confirmation) {
+        return false;
+      }
+      jQuery.post(
+          WFI_OBJ.ajaxurl,
+          {
+              action : 'wfi-remove-featured-image',
+              post_ID : $this.data('post')
+          },
+          function( response ) {
+              console.log( response );
+          }
+      );
+
+
+    });
     // $('a.wfi-btn-add').css('border','2px red solid');
 
         // Uploads

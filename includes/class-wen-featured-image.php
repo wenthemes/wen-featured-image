@@ -161,8 +161,12 @@ class Wen_Featured_Image {
     $this->loader->add_action( 'manage_page_posts_custom_column', $plugin_admin, 'posts_column_content', 10, 2 );
 
     // AJAX handling
+    // Add
     $this->loader->add_action( 'wp_ajax_nopriv_wfi-add-featured-image', $plugin_admin, 'ajax_add_featured_image' );
     $this->loader->add_action( 'wp_ajax_wfi-add-featured-image', $plugin_admin, 'ajax_add_featured_image' );
+    // Remove
+    $this->loader->add_action( 'wp_ajax_nopriv_wfi-remove-featured-image', $plugin_admin, 'ajax_remove_featured_image' );
+    $this->loader->add_action( 'wp_ajax_wfi-remove-featured-image', $plugin_admin, 'ajax_remove_featured_image' );
     // add_action( 'wp_ajax_nopriv_myajax-submit', 'myajax_submit' );
     // add_action( 'wp_ajax_myajax-submit', 'myajax_submit' );
 	}
