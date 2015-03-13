@@ -134,6 +134,18 @@ class Wen_Featured_Image_Admin {
     return $template;
 
   }
+
+  function custom_block_template( $template ){
+
+    global $post;
+    if ( ! current_user_can( 'upload_files', $post->ID ) ) {
+      $search_arr  = array( '{{add}}', '{{change}}', '{{remove}}' );
+      $replace_arr = array( '', '', '' );
+      $template = str_replace( $search_arr, $replace_arr, $template );
+    }
+    return $template;
+  }
+
   function get_image_block_html( $attachment_id, $post_id = null ){
 
     global $post;

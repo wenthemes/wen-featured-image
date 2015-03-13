@@ -170,8 +170,9 @@ class Wen_Featured_Image {
     // Change
     $this->loader->add_action( 'wp_ajax_nopriv_wfi-change-featured-image', $plugin_admin, 'ajax_change_featured_image' );
     $this->loader->add_action( 'wp_ajax_wfi-change-featured-image', $plugin_admin, 'ajax_change_featured_image' );
-    // add_action( 'wp_ajax_nopriv_myajax-submit', 'myajax_submit' );
-    // add_action( 'wp_ajax_myajax-submit', 'myajax_submit' );
+
+    // Template filtering
+    $this->loader->add_filter( 'wen_featured_image_filter_block_template', $plugin_admin, 'custom_block_template' );
 	}
 
 	/**
