@@ -138,7 +138,13 @@ class Wen_Featured_Image_Admin {
     $value = $template;
 
     // Image
-    $image_html = '<img src="' . esc_url( $thumbnail_url ). '" style="max-width:100px;"/>';
+    $image_start = '';
+    $image_end   = '';
+    if ( $attachment_id ) {
+      $image_start = '<a href="' .  ( ( $attachment_id ) ? esc_url( $full_url ) : '' ) . '" class="wfi-btn-preview thickbox" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '>';
+      $image_end   = '</a>';
+    }
+    $image_html = $image_start . '<img src="' . esc_url( $thumbnail_url ). '" style="max-width:100px;"/>' . $image_end;
     $value = str_replace( '{{image}}', $image_html, $value );
 
     // Preview
