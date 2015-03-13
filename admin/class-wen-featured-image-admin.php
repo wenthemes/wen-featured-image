@@ -73,6 +73,8 @@ class Wen_Featured_Image_Admin {
 		 * class.
 		 */
 
+    wp_enqueue_style('thickbox');
+
 		wp_enqueue_style( $this->wen_featured_image, plugin_dir_url( __FILE__ ) . 'css/wen-featured-image-admin.css', array(), $this->version, 'all' );
 
 	}
@@ -96,6 +98,8 @@ class Wen_Featured_Image_Admin {
 		 * class.
 		 */
 
+    wp_enqueue_script('thickbox');
+
 		wp_enqueue_script( $this->wen_featured_image, plugin_dir_url( __FILE__ ) . 'js/wen-featured-image-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
@@ -109,20 +113,34 @@ class Wen_Featured_Image_Admin {
   function posts_column_content( $column, $post_ID ){
 
     if ( 'wfi_image' == $column ) {
+
         $post_featured_image = '';
         $post_thumbnail_id = get_post_thumbnail_id($post_ID);
         if ($post_thumbnail_id) {
-            $post_thumbnail_img = wp_get_attachment_image_src( $post_thumbnail_id, 'thumbnail' );
-            $post_featured_image = $post_thumbnail_img[0];
-        }
-        if ( $post_featured_image ) {
-          echo '<img src="' . esc_url( $post_featured_image ) . '" style="max-width:100px;"/>';
+
+          // Image detail
+          $img_detail = wp_prepare_attachment_for_js( $post_thumbnail_id );
+          // nspre($img_detail);
+
+          // Image URLs
+          $thumbnail_url = $img_detail['sizes']['thumbnail']['url'];
+          $full_url      = $img_detail['sizes']['full']['url'];
+
+          echo '<a href="' . esc_url( $full_url ) . '" class="thickbox" title="' . esc_attr( $img_detail['title'] ) .'">';
+          echo '<img src="' . esc_url( $thumbnail_url ) . '" style="max-width:100px;"/>';
+          echo '</a>';
+
+          // Buttons
+          echo '<div class="wfi-button-bar">';
+          echo '<a href="' . esc_url( $full_url ) . '" class="wfi-btn-preview thickbox" title="' . esc_attr( $img_detail['title'] ) .'"><span class="dashicons dashicons-visibility"></span></a>';
+          echo '</div><!-- .wfi-button-bar -->';
         }
         else{
           echo '<img src="' . esc_url( WEN_FEATURED_IMAGE_URL . '/admin/images/no-image.png' ) . '" />';
         }
-    }
 
-  }
+    }// end if wfi_column
+
+  } //end function
 
 }
