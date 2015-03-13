@@ -121,7 +121,8 @@ class Wen_Featured_Image_Admin {
 
   function get_image_block_template(){
 
-    $template = '{{image}}';
+    $template = '';
+    $template .= '{{image}}';
     $template .= '<div class="wfi-button-bar">';
     $template .= '{{preview}}';
     $template .= '{{add}}';
@@ -162,7 +163,7 @@ class Wen_Featured_Image_Admin {
     $image_start = '';
     $image_end   = '';
     if ( $attachment_id ) {
-      $image_start = '<a href="' .  ( ( $attachment_id ) ? esc_url( $full_url ) : '' ) . '" class="wfi-btn-preview thickbox" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . ' title="' . esc_attr( $img_detail['title'] ) . '">';
+      $image_start = '<a href="' .  ( ( $attachment_id ) ? esc_url( $full_url ) : '' ) . '" class="wfi-image thickbox" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . ' title="' . esc_attr( $img_detail['title'] ) . '">';
       $image_end   = '</a>';
     }
     $image_html = $image_start . '<img src="' . esc_url( $thumbnail_url ). '" style="max-width:100px;"/>' . $image_end;

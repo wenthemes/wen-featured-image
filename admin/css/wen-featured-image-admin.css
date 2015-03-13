@@ -8,4 +8,19 @@
 }
 .wfi-block-wrap{
   min-height: 100px;
+  position: relative;
+}
+.wfi-button-bar{
+  background-color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: absolute;
+  top: 0;
+  width:100px;
+  z-index: 999;
+}
+.wfi-button-bar a{
+  color: #eee;
+}
+.wfi-button-bar a:hover{
+  color: #ccc;
 }
