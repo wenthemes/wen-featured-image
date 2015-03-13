@@ -132,11 +132,21 @@ class Wen_Featured_Image_Admin {
 
           // Buttons
           echo '<div class="wfi-button-bar">';
+          // Preview
           echo '<a href="' . esc_url( $full_url ) . '" class="wfi-btn-preview thickbox" title="' . esc_attr( $img_detail['title'] ) .'"><span class="dashicons dashicons-visibility"></span></a>';
+          // Change
+          echo '<a href="#" class="wfi-btn-change"><span class="dashicons dashicons-update"></span></a>';
+          // Remove
+          echo '<a href="#" class="wfi-btn-remove"><span class="dashicons dashicons-trash"></span></a>';
           echo '</div><!-- .wfi-button-bar -->';
         }
         else{
           echo '<img src="' . esc_url( WEN_FEATURED_IMAGE_URL . '/admin/images/no-image.png' ) . '" />';
+          // Buttons
+          echo '<div class="wfi-button-bar">';
+          // Remove
+          echo '<a href="#" class="wfi-btn-add"><span class="dashicons dashicons-plus-alt"></span></a>';
+          echo '</div><!-- .wfi-button-bar -->';
         }
 
     }// end if wfi_column
