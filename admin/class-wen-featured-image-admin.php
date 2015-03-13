@@ -193,12 +193,12 @@ class Wen_Featured_Image_Admin {
 
   }
 
-  function posts_column_content( $column, $post_ID ){
+  function posts_column_content( $column, $post_id ){
 
     if ( 'wfi_image' == $column ) {
 
-        $post_thumbnail_id = get_post_thumbnail_id( $post_ID );
-        echo '<div id="wfi-block-wrap-'. esc_attr( $post_ID ) . '">';
+        $post_thumbnail_id = get_post_thumbnail_id( $post_id );
+        echo '<div id="wfi-block-wrap-'. esc_attr( $post_id ) . '">';
         echo $this->get_image_block_html( $post_thumbnail_id );
         echo '</div>';
 
@@ -211,12 +211,12 @@ class Wen_Featured_Image_Admin {
     $output = array();
     $output['status'] = 0;
 
-    $post_ID       = absint( $_POST['post_ID'] );
+    $post_id       = absint( $_POST['post_id'] );
     $attachment_ID = absint( $_POST['attachment_ID'] );
-    if ( $post_ID < 1 || $attachment_ID < 0) {
+    if ( $post_id < 1 || $attachment_ID < 0) {
       wp_send_json( $output );
     }
-    $update = update_post_meta( $post_ID, '_thumbnail_id', $attachment_ID );
+    $update = update_post_meta( $post_id, '_thumbnail_id', $attachment_ID );
     if ( $update) {
       $output['status'] = 1;
     }
@@ -228,16 +228,16 @@ class Wen_Featured_Image_Admin {
     $output = array();
     $output['status'] = 0;
 
-    $post_ID       = absint( $_POST['post_ID'] );
+    $post_id       = absint( $_POST['post_id'] );
     $attachment_ID = absint( $_POST['attachment_ID'] );
-    if ( $post_ID < 1 || $attachment_ID < 0) {
+    if ( $post_id < 1 || $attachment_ID < 0) {
       wp_send_json( $output );
     }
-    $update = update_post_meta( $post_ID, '_thumbnail_id', $attachment_ID );
+    $update = update_post_meta( $post_id, '_thumbnail_id', $attachment_ID );
     if ( $update) {
       $output['status']  = 1;
-      $output['post_ID'] = $post_ID;
-      $output['html']    = $this->get_image_block_html( $attachment_ID, $post_ID );
+      $output['post_id'] = $post_id;
+      $output['html']    = $this->get_image_block_html( $attachment_ID, $post_id );
     }
     wp_send_json( $output );
 
@@ -248,12 +248,12 @@ class Wen_Featured_Image_Admin {
     $output = array();
     $output['status'] = 0;
 
-    $post_ID       = absint( $_POST['post_ID'] );
+    $post_id       = absint( $_POST['post_id'] );
 
-    if ( $post_ID < 1 ) {
+    if ( $post_id < 1 ) {
       wp_send_json( $output );
     }
-    delete_post_meta( $post_ID, '_thumbnail_id' );
+    delete_post_meta( $post_id, '_thumbnail_id' );
     $output['status'] = 1;
     wp_send_json( $output );
 

@@ -18,7 +18,7 @@ var wfi_file_frame;
           WFI_OBJ.ajaxurl,
           {
               action : 'wfi-remove-featured-image',
-              post_ID : $this.data('post')
+              post_id : $this.data('post')
           },
           function( response ) {
               console.log( response );
@@ -55,7 +55,7 @@ var wfi_file_frame;
             WFI_OBJ.ajaxurl,
             {
                 action : 'wfi-add-featured-image',
-                post_ID : $this.data('post'),
+                post_id : $this.data('post'),
                 attachment_ID : attachment.id
             },
             function( response ) {
@@ -96,12 +96,12 @@ var wfi_file_frame;
             WFI_OBJ.ajaxurl,
             {
                 action : 'wfi-change-featured-image',
-                post_ID : $this.data('post'),
+                post_id : $this.data('post'),
                 attachment_ID : attachment.id
             },
             function( response ) {
               if( 1 == response.status ){
-                var target_id = 'wfi-block-wrap-' + response.post_ID;
+                var target_id = 'wfi-block-wrap-' + response.post_id;
                 $('#'+target_id).hide().html(response.html).fadeIn();
               }
             }
