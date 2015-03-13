@@ -100,7 +100,14 @@ class Wen_Featured_Image_Admin {
 
     wp_enqueue_script('thickbox');
 
-		wp_enqueue_script( $this->wen_featured_image, plugin_dir_url( __FILE__ ) . 'js/wen-featured-image-admin.js', array( 'jquery' ), $this->version, false );
+    wp_enqueue_media();
+
+		wp_register_script( $this->wen_featured_image, plugin_dir_url( __FILE__ ) . 'js/wen-featured-image-admin.js', array( 'jquery' ), $this->version, false );
+    $extra_array = array(
+      'ajaxurl' => admin_url( 'admin-ajax.php' ),
+      );
+    wp_localize_script( $this->wen_featured_image, 'WFI_OBJ', $extra_array );
+    wp_enqueue_script( $this->wen_featured_image );
 
 	}
 
@@ -193,5 +200,23 @@ class Wen_Featured_Image_Admin {
     }// end if wfi_column
 
   } //end function
+
+  function ajax_add_featured_image(){
+
+    $output = array();
+    $output['status'] = 0;
+
+    $post_ID       = absint( $_POST['post_ID'] );
+    $attachment_ID = absint( $_POST['attachment_ID'] );
+    if ( $post_ID < 1 || $attachment_ID < 0) {
+      wp_send_json( $output );
+    }
+    $update = update_post_meta( $post_ID, '_thumbnail_id', $attachment_ID );
+    if ( $update) {
+      $output['status'] = 1;
+    }
+    wp_send_json( $output );
+
+  }
 
 }
