@@ -6,3 +6,6 @@
 #wfi_image{
   width: 110px;
 }
+.wfi-block-wrap{
+  min-height: 100px;
+}

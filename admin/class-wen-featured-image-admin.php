@@ -198,7 +198,7 @@ class Wen_Featured_Image_Admin {
     if ( 'wfi_image' == $column ) {
 
         $post_thumbnail_id = get_post_thumbnail_id( $post_id );
-        echo '<div id="wfi-block-wrap-'. esc_attr( $post_id ) . '">';
+        echo '<div id="wfi-block-wrap-'. esc_attr( $post_id ) . '" class="wfi-block-wrap">';
         echo $this->get_image_block_html( $post_thumbnail_id );
         echo '</div>';
 
@@ -219,6 +219,8 @@ class Wen_Featured_Image_Admin {
     $update = update_post_meta( $post_id, '_thumbnail_id', $attachment_ID );
     if ( $update) {
       $output['status'] = 1;
+      $output['post_id'] = $post_id;
+      $output['html']    = $this->get_image_block_html( $attachment_ID, $post_id );
     }
     wp_send_json( $output );
 
@@ -253,8 +255,12 @@ class Wen_Featured_Image_Admin {
     if ( $post_id < 1 ) {
       wp_send_json( $output );
     }
-    delete_post_meta( $post_id, '_thumbnail_id' );
-    $output['status'] = 1;
+    $delete = delete_post_meta( $post_id, '_thumbnail_id' );
+    if ( $delete ) {
+      $output['status']  = 1;
+      $output['post_id'] = $post_id;
+      $output['html']    = $this->get_image_block_html( 0, $post_id );
+    }
     wp_send_json( $output );
 
   }

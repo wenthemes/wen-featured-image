@@ -2,6 +2,14 @@ var wfi_file_frame;
 (function( $ ) {
 	'use strict';
 
+  // Replace AJAX content
+  function wen_featured_image_replace_ajax_content( post_id, block_html ){
+
+    var target_id = 'wfi-block-wrap-' + post_id;
+    jQuery('#'+target_id).hide().html(block_html).fadeIn();
+
+  }
+
   jQuery(document).ready(function($) {
 
     // Delete
@@ -21,7 +29,9 @@ var wfi_file_frame;
               post_id : $this.data('post')
           },
           function( response ) {
-              console.log( response );
+            if( 1 == response.status ){
+              wen_featured_image_replace_ajax_content(response.post_id, response.html);
+            }
           }
       );
 
@@ -59,7 +69,9 @@ var wfi_file_frame;
                 attachment_ID : attachment.id
             },
             function( response ) {
-                console.log( response );
+              if( 1 == response.status ){
+                wen_featured_image_replace_ajax_content(response.post_id, response.html);
+              }
             }
         );
         return;
@@ -101,8 +113,7 @@ var wfi_file_frame;
             },
             function( response ) {
               if( 1 == response.status ){
-                var target_id = 'wfi-block-wrap-' + response.post_id;
-                $('#'+target_id).hide().html(response.html).fadeIn();
+                wen_featured_image_replace_ajax_content(response.post_id, response.html);
               }
             }
         );
