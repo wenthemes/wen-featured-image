@@ -128,6 +128,8 @@ class Wen_Featured_Image_Admin {
   }
   function get_image_block_html( $attachment_id ){
 
+    global $post;
+
     if ( $attachment_id ) {
       // Image detail
       $img_detail = wp_prepare_attachment_for_js( $attachment_id );
@@ -166,15 +168,15 @@ class Wen_Featured_Image_Admin {
     $value = str_replace( '{{preview}}', $preview_html, $value );
 
     // Remove
-    $remove_html = '<a href="#" class="wfi-btn-remove" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-trash"></span></a>';
+    $remove_html = '<a href="#"  data-post="' . esc_attr( $post->ID ) . '" class="wfi-btn-remove" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-trash"></span></a>';
     $value = str_replace( '{{remove}}', $remove_html, $value );
 
     // Change
-    $change_html = '<a href="#" class="wfi-btn-change" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-update"></span></a>';
+    $change_html = '<a href="#"  data-post="' . esc_attr( $post->ID ) . '" class="wfi-btn-change" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-update"></span></a>';
     $value = str_replace( '{{change}}', $change_html, $value );
 
     // Add
-    $add_html = '<a href="#" class="wfi-btn-add" ' .  ( ( $attachment_id ) ? ' style="display:none;" ' : '' ) . '><span class="dashicons dashicons-plus-alt"></span></a>';
+    $add_html = '<a href="#" data-post="' . esc_attr( $post->ID ) . '" class="wfi-btn-add" ' .  ( ( $attachment_id ) ? ' style="display:none;" ' : '' ) . '><span class="dashicons dashicons-plus-alt"></span></a>';
     $value = str_replace( '{{add}}', $add_html, $value );
 
     return $value;
