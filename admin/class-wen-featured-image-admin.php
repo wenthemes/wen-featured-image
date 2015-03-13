@@ -117,6 +117,7 @@ class Wen_Featured_Image_Admin {
     if ( $attachment_id ) {
       // Image detail
       $img_detail = wp_prepare_attachment_for_js( $attachment_id );
+      // nspre($img_detail);
       // Image URLs
       $thumbnail_url = $img_detail['sizes']['thumbnail']['url'];
       $full_url      = $img_detail['sizes']['full']['url'];
@@ -141,14 +142,19 @@ class Wen_Featured_Image_Admin {
     $image_start = '';
     $image_end   = '';
     if ( $attachment_id ) {
-      $image_start = '<a href="' .  ( ( $attachment_id ) ? esc_url( $full_url ) : '' ) . '" class="wfi-btn-preview thickbox" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '>';
+      $image_start = '<a href="' .  ( ( $attachment_id ) ? esc_url( $full_url ) : '' ) . '" class="wfi-btn-preview thickbox" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . ' title="' . esc_attr( $img_detail['title'] ) . '">';
       $image_end   = '</a>';
     }
     $image_html = $image_start . '<img src="' . esc_url( $thumbnail_url ). '" style="max-width:100px;"/>' . $image_end;
     $value = str_replace( '{{image}}', $image_html, $value );
 
     // Preview
-    $preview_html = '<a href="' .  ( ( $attachment_id ) ? esc_url( $full_url ) : '' ) . '" class="wfi-btn-preview thickbox" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-visibility"></span></a>';
+    if ( $attachment_id ) {
+      $preview_html = '<a href="' .  ( ( $attachment_id ) ? esc_url( $full_url ) : '' ) . '" class="wfi-btn-preview thickbox" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . ' title="' . esc_attr( $img_detail['title'] ) . '"><span class="dashicons dashicons-visibility"></span></a>';
+    }
+    else{
+      $preview_html = '';
+    }
     $value = str_replace( '{{preview}}', $preview_html, $value );
 
     // Remove
