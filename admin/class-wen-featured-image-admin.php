@@ -103,6 +103,7 @@ class Wen_Featured_Image_Admin {
 		wp_enqueue_script( $this->wen_featured_image, plugin_dir_url( __FILE__ ) . 'js/wen-featured-image-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+
   function posts_column_head( $columns ){
 
     $columns['wfi_image'] = __( 'Featured Image', 'wen-featured-image' );
@@ -110,44 +111,62 @@ class Wen_Featured_Image_Admin {
     return $columns;
 
   }
+
+  function get_image_block_html( $attachment_id ){
+
+    if ( $attachment_id ) {
+      // Image detail
+      $img_detail = wp_prepare_attachment_for_js( $attachment_id );
+      // Image URLs
+      $thumbnail_url = $img_detail['sizes']['thumbnail']['url'];
+      $full_url      = $img_detail['sizes']['full']['url'];
+
+    }
+    else{
+      $thumbnail_url = WEN_FEATURED_IMAGE_URL . '/admin/images/no-image.png';
+    }
+    // Template
+    $template = '{{image}}';
+    $template .= '<div class="wfi-button-bar">';
+    $template .= '{{preview}}';
+    $template .= '{{add}}';
+    $template .= '{{change}}';
+    $template .= '{{remove}}';
+    $template .= '</div>';
+
+    // Replacement
+    $value = $template;
+
+    // Image
+    $image_html = '<img src="' . esc_url( $thumbnail_url ). '" style="max-width:100px;"/>';
+    $value = str_replace( '{{image}}', $image_html, $value );
+
+    // Preview
+    $preview_html = '<a href="' .  ( ( $attachment_id ) ? esc_url( $full_url ) : '' ) . '" class="wfi-btn-preview thickbox" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-visibility"></span></a>';
+    $value = str_replace( '{{preview}}', $preview_html, $value );
+
+    // Remove
+    $remove_html = '<a href="#" class="wfi-btn-remove" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-trash"></span></a>';
+    $value = str_replace( '{{remove}}', $remove_html, $value );
+
+    // Change
+    $change_html = '<a href="#" class="wfi-btn-change" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-update"></span></a>';
+    $value = str_replace( '{{change}}', $change_html, $value );
+
+    // Add
+    $add_html = '<a href="#" class="wfi-btn-add" ' .  ( ( $attachment_id ) ? ' style="display:none;" ' : '' ) . '><span class="dashicons dashicons-plus-alt"></span></a>';
+    $value = str_replace( '{{add}}', $add_html, $value );
+
+    return $value;
+
+  }
+
   function posts_column_content( $column, $post_ID ){
 
     if ( 'wfi_image' == $column ) {
 
-        $post_featured_image = '';
-        $post_thumbnail_id = get_post_thumbnail_id($post_ID);
-        if ($post_thumbnail_id) {
-
-          // Image detail
-          $img_detail = wp_prepare_attachment_for_js( $post_thumbnail_id );
-          // nspre($img_detail);
-
-          // Image URLs
-          $thumbnail_url = $img_detail['sizes']['thumbnail']['url'];
-          $full_url      = $img_detail['sizes']['full']['url'];
-
-          echo '<a href="' . esc_url( $full_url ) . '" class="thickbox" title="' . esc_attr( $img_detail['title'] ) .'">';
-          echo '<img src="' . esc_url( $thumbnail_url ) . '" style="max-width:100px;"/>';
-          echo '</a>';
-
-          // Buttons
-          echo '<div class="wfi-button-bar">';
-          // Preview
-          echo '<a href="' . esc_url( $full_url ) . '" class="wfi-btn-preview thickbox" title="' . esc_attr( $img_detail['title'] ) .'"><span class="dashicons dashicons-visibility"></span></a>';
-          // Change
-          echo '<a href="#" class="wfi-btn-change"><span class="dashicons dashicons-update"></span></a>';
-          // Remove
-          echo '<a href="#" class="wfi-btn-remove"><span class="dashicons dashicons-trash"></span></a>';
-          echo '</div><!-- .wfi-button-bar -->';
-        }
-        else{
-          echo '<img src="' . esc_url( WEN_FEATURED_IMAGE_URL . '/admin/images/no-image.png' ) . '" />';
-          // Buttons
-          echo '<div class="wfi-button-bar">';
-          // Remove
-          echo '<a href="#" class="wfi-btn-add"><span class="dashicons dashicons-plus-alt"></span></a>';
-          echo '</div><!-- .wfi-button-bar -->';
-        }
+        $post_thumbnail_id = get_post_thumbnail_id( $post_ID );
+        echo $this->get_image_block_html( $post_thumbnail_id );
 
     }// end if wfi_column
 
