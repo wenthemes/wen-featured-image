@@ -112,6 +112,20 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  function get_image_block_template(){
+
+    $template = '{{image}}';
+    $template .= '<div class="wfi-button-bar">';
+    $template .= '{{preview}}';
+    $template .= '{{add}}';
+    $template .= '{{change}}';
+    $template .= '{{remove}}';
+    $template .= '</div>';
+
+    $template = apply_filters( 'wen_featured_image_filter_block_template', $template );
+    return $template;
+
+  }
   function get_image_block_html( $attachment_id ){
 
     if ( $attachment_id ) {
@@ -127,13 +141,7 @@ class Wen_Featured_Image_Admin {
       $thumbnail_url = WEN_FEATURED_IMAGE_URL . '/admin/images/no-image.png';
     }
     // Template
-    $template = '{{image}}';
-    $template .= '<div class="wfi-button-bar">';
-    $template .= '{{preview}}';
-    $template .= '{{add}}';
-    $template .= '{{change}}';
-    $template .= '{{remove}}';
-    $template .= '</div>';
+    $template = $this->get_image_block_template();
 
     // Replacement
     $value = $template;
