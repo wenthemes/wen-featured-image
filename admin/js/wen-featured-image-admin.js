@@ -100,7 +100,10 @@ var wfi_file_frame;
                 attachment_ID : attachment.id
             },
             function( response ) {
-                console.log( response );
+              if( 1 == response.status ){
+                var target_id = 'wfi-block-wrap-' + response.post_ID;
+                $('#'+target_id).hide().html(response.html).fadeIn();
+              }
             }
         );
         return;

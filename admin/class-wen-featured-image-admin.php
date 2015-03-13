@@ -133,9 +133,12 @@ class Wen_Featured_Image_Admin {
     return $template;
 
   }
-  function get_image_block_html( $attachment_id ){
+  function get_image_block_html( $attachment_id, $post_id = null ){
 
     global $post;
+    if ( null != $post_id ) {
+      $post = get_post( $post_id );
+    }
 
     if ( $attachment_id ) {
       // Image detail
@@ -195,7 +198,9 @@ class Wen_Featured_Image_Admin {
     if ( 'wfi_image' == $column ) {
 
         $post_thumbnail_id = get_post_thumbnail_id( $post_ID );
+        echo '<div id="wfi-block-wrap-'. esc_attr( $post_ID ) . '">';
         echo $this->get_image_block_html( $post_thumbnail_id );
+        echo '</div>';
 
     }// end if wfi_column
 
@@ -230,7 +235,9 @@ class Wen_Featured_Image_Admin {
     }
     $update = update_post_meta( $post_ID, '_thumbnail_id', $attachment_ID );
     if ( $update) {
-      $output['status'] = 1;
+      $output['status']  = 1;
+      $output['post_ID'] = $post_ID;
+      $output['html']    = $this->get_image_block_html( $attachment_ID, $post_ID );
     }
     wp_send_json( $output );
 
