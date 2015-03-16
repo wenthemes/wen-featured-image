@@ -58,7 +58,10 @@ class Wen_Featured_Image {
   protected $version;
 
   // Default options
-	protected $defaults;
+  protected $defaults;
+
+  // Plugin options
+	protected $options;
 
 	/**
 	 * Define the core functionality of the plugin.
@@ -147,7 +150,8 @@ class Wen_Featured_Image {
 
   private function set_default_options(){
 
-    $this->defaults  = $this->get_default_plugin_options();
+    $this->defaults = $this->get_default_plugin_options();
+    $this->options  = $this->get_plugin_options();
 
   }
   private function get_default_plugin_options(){
@@ -189,10 +193,23 @@ class Wen_Featured_Image {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-    $this->loader->add_filter( 'manage_post_posts_columns', $plugin_admin, 'posts_column_head' );
-    $this->loader->add_filter( 'manage_page_posts_columns', $plugin_admin, 'posts_column_head' );
-    $this->loader->add_action( 'manage_post_posts_custom_column', $plugin_admin, 'posts_column_content', 10, 2 );
-    $this->loader->add_action( 'manage_page_posts_custom_column', $plugin_admin, 'posts_column_content', 10, 2 );
+    $post_types = array();
+    if ( isset( $this->options['image_column_cpt'] ) ) {
+      $post_types = $this->options['image_column_cpt'];
+    }
+    if ( ! empty( $post_types )) {
+      foreach ($post_types as $key => $p ) {
+
+        $this->loader->add_filter( 'manage_' . $p . '_posts_columns', $plugin_admin, 'posts_column_head' );
+        $this->loader->add_action( 'manage_' . $p . '_posts_custom_column', $plugin_admin, 'posts_column_content', 10, 2 );
+
+      }
+    }
+
+    // $this->loader->add_filter( 'manage_post_posts_columns', $plugin_admin, 'posts_column_head' );
+    // $this->loader->add_filter( 'manage_page_posts_columns', $plugin_admin, 'posts_column_head' );
+    // $this->loader->add_action( 'manage_post_posts_custom_column', $plugin_admin, 'posts_column_content', 10, 2 );
+    // $this->loader->add_action( 'manage_page_posts_custom_column', $plugin_admin, 'posts_column_content', 10, 2 );
 
     // AJAX handling
     // Add

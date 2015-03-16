@@ -157,13 +157,6 @@ class Wen_Featured_Image_Admin {
     if ( isset( $post_types_list['attachment'] ) ) {
       unset( $post_types_list['attachment'] );
     }
-    // Temporary
-    if ( ! empty( $post_types_list ) ) {
-      $new_list = array();
-      $new_list['post'] = $post_types_list['post'];
-      $new_list['page'] = $post_types_list['page'];
-      $post_types_list = $new_list;
-    }
 
     // Field option
     $post_types = array();
