@@ -55,7 +55,10 @@ class Wen_Featured_Image {
 	 * @access   protected
 	 * @var      string    $version    The current version of the plugin.
 	 */
-	protected $version;
+  protected $version;
+
+  // Default options
+	protected $defaults;
 
 	/**
 	 * Define the core functionality of the plugin.
@@ -72,7 +75,8 @@ class Wen_Featured_Image {
 		$this->version = '1.0.0';
 
 		$this->load_dependencies();
-		$this->set_locale();
+    $this->set_locale();
+		$this->set_default_options();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
@@ -141,6 +145,36 @@ class Wen_Featured_Image {
 
 	}
 
+  private function set_default_options(){
+
+    $this->defaults  = $this->get_default_plugin_options();
+
+  }
+  private function get_default_plugin_options(){
+
+    $output = array(
+      'image_column_cpt' => array( 'post' ),
+    );
+    return $output;
+
+  }
+  public function get_plugin_options(){
+
+    return get_option( 'wen_featured_image_options', $this->get_default_plugin_options() );
+
+  }
+  public function get_option( $key = '' ){
+    $output = '';
+    if ( empty( $key ) ) {
+      return $output;
+    }
+    // $plugin_options = get_option();
+
+    return 'aaluu';
+  }
+
+
+
 	/**
 	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
@@ -150,7 +184,7 @@ class Wen_Featured_Image {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Wen_Featured_Image_Admin( $this->get_wen_featured_image(), $this->get_version() );
+		$plugin_admin = new Wen_Featured_Image_Admin( $this->get_wen_featured_image(), $this->get_version(), $this->get_plugin_options() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -189,7 +223,7 @@ class Wen_Featured_Image {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Wen_Featured_Image_Public( $this->get_wen_featured_image(), $this->get_version() );
+		$plugin_public = new Wen_Featured_Image_Public( $this->get_wen_featured_image(), $this->get_version(), $this->get_plugin_options() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );

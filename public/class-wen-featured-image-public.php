@@ -39,6 +39,8 @@ class Wen_Featured_Image_Public {
 	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
+  private $options;
+
 
 	/**
 	 * Initialize the class and set its properties.
@@ -47,10 +49,12 @@ class Wen_Featured_Image_Public {
 	 * @param      string    $wen_featured_image       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $wen_featured_image, $version ) {
+	public function __construct( $wen_featured_image, $version, $options ) {
 
 		$this->wen_featured_image = $wen_featured_image;
 		$this->version = $version;
+    $this->options = $options;
+
 
 	}
 

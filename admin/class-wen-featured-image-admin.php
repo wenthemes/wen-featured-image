@@ -38,7 +38,8 @@ class Wen_Featured_Image_Admin {
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
-	private $version;
+  private $version;
+	private $options;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -47,10 +48,11 @@ class Wen_Featured_Image_Admin {
 	 * @param      string    $wen_featured_image       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $wen_featured_image, $version ) {
+	public function __construct( $wen_featured_image, $version, $options ) {
 
 		$this->wen_featured_image = $wen_featured_image;
-		$this->version = $version;
+    $this->version = $version;
+		$this->options = $options;
 
 	}
 
@@ -147,21 +149,22 @@ class Wen_Featured_Image_Admin {
 
   function wfi_field_image_column_cpt_callback(){
 
-    $post_types = get_post_types( array(
+    $post_types_list = get_post_types( array(
       'public'   => true,
       ) , 'objects' );
+
     // Remove attachment
-
-    if ( isset( $post_types['attachment'] ) ) {
-      unset( $post_types['attachment'] );
+    if ( isset( $post_types_list['attachment'] ) ) {
+      unset( $post_types_list['attachment'] );
     }
-    foreach ( $post_types as $key => $post_type ){
 
-      $checked = ( 1 == 1 ) ? " checked='checked' " : "" ;
+    // Field option
+    $post_types = $this->options['image_column_cpt'];
+
+    foreach ( $post_types_list as $key => $post_type ){
       ?>
-      <input type="checkbox" name="wen_featured_image_options[image_column_cpt][]" value="<?php echo esc_attr( $key ); ?>"/><span><?php echo esc_html( $post_type->labels->singular_name ); ?>&nbsp;<em>(<?php echo esc_html( $key ); ?>)</em></span><br/>
+      <input type="checkbox" name="wen_featured_image_options[image_column_cpt][]" value="<?php echo esc_attr( $key ); ?>" <?php checked( true, in_array( $key, $post_types ) ) ; ?>/><span><?php echo esc_html( $post_type->labels->singular_name ); ?>&nbsp;<em>(<?php echo esc_html( $key ); ?>)</em></span><br/>
       <?php
-
     }
 
   } //end function
