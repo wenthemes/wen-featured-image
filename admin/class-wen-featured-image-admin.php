@@ -240,7 +240,7 @@ class Wen_Featured_Image_Admin {
       $image_start = '<a href="' .  ( ( $attachment_id ) ? esc_url( $full_url ) : '' ) . '" class="wfi-image thickbox" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . ' title="' . esc_attr( $img_detail['title'] ) . '">';
       $image_end   = '</a>';
     }
-    $image_html = $image_start . '<img src="' . esc_url( $thumbnail_url ). '" style="max-width:100px;"/>' . $image_end;
+    $image_html = $image_start . '<img src="' . esc_url( $thumbnail_url ). '" style="max-width:80px;"/>' . $image_end;
     $value = str_replace( '{{image}}', $image_html, $value );
 
     // Preview
