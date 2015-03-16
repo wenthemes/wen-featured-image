@@ -111,6 +111,62 @@ class Wen_Featured_Image_Admin {
 
 	}
 
+  function setup_menu(){
+    if( class_exists( 'WEN_Addons' ) ){
+      add_submenu_page( WEN_Addons::$menu_name, __( 'WEN Featured Image', 'wen-featured-image' ), __( 'WEN Featured Image', 'wen-featured-image' ), 'manage_options', 'wen-featured-image', array( &$this,'option_page_init' ) );
+    }
+    // add_action( 'admin_init', array(&$this,'register_settings' ));
+  }
+
+  function option_page_init(){
+    include( sprintf( "%s/partials/wen-featured-image-admin-display.php", dirname( __FILE__ ) ) );
+  }
+
+  function register_settings(){
+
+    register_setting( 'wfi-plugin-options-group', 'wen_featured_image_options', array( $this, 'plugin_options_validate' ) );
+
+    ////
+
+    add_settings_section( 'wfi_general_settings', __( 'General Settings', 'wen-featured-image' ) , array( $this, 'plugin_section_general_text_callback'), 'wen-featured-image-general' );
+
+    add_settings_field( 'wfi_field_image_column_cpt', __( 'Enable Image Column for', 'wen-featured-image' ), array( $this, 'wfi_field_image_column_cpt_callback' ), 'wen-featured-image-general', 'wfi_general_settings');
+
+    ////
+
+  }
+  function plugin_section_general_text_callback(){
+
+    return false;
+
+  }
+
+  function plugin_options_validate( $input ){
+    return $input;
+  }
+
+  function wfi_field_image_column_cpt_callback(){
+
+    $post_types = get_post_types( array(
+      'public'   => true,
+      ) , 'objects' );
+    // Remove attachment
+
+    if ( isset( $post_types['attachment'] ) ) {
+      unset( $post_types['attachment'] );
+    }
+    foreach ( $post_types as $key => $post_type ){
+
+      $checked = ( 1 == 1 ) ? " checked='checked' " : "" ;
+      ?>
+      <input type="checkbox" name="wen_featured_image_options[image_column_cpt][]" value="<?php echo esc_attr( $key ); ?>"/><span><?php echo esc_html( $post_type->labels->singular_name ); ?>&nbsp;<em>(<?php echo esc_html( $key ); ?>)</em></span><br/>
+      <?php
+
+    }
+
+  } //end function
+
+
   function posts_column_head( $columns ){
 
     $columns['wfi_image'] = __( 'Featured Image', 'wen-featured-image' );

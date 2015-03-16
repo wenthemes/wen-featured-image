@@ -173,6 +173,11 @@ class Wen_Featured_Image {
 
     // Template filtering
     $this->loader->add_filter( 'wen_featured_image_filter_block_template', $plugin_admin, 'custom_block_template' );
+
+    // Plugin Options
+    $this->loader->add_action( 'admin_menu', $plugin_admin, 'setup_menu' );
+    $this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
+
 	}
 
 	/**
