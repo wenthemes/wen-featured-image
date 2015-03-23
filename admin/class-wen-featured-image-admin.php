@@ -173,6 +173,10 @@ class Wen_Featured_Image_Admin {
   function plugin_options_validate( $input ){
 
     // Validate now
+    $input['required_message'] = sanitize_text_field( $input['required_message'] );
+    if ( empty( $input['required_message'] ) ) {
+      $input['required_message'] = __( 'Featured Image is required to publish.', 'wen-featured-image' );
+    }
     if ( current_user_can( 'unfiltered_html' ) ){
       $input['message_before'] = $input['message_before'];
       $input['message_after']  = $input['message_after'];
@@ -462,6 +466,13 @@ class Wen_Featured_Image_Admin {
       echo '<div id="message" class="error"><p>';
       echo '<strong>' . __( 'WEN Featured Image', 'wen-featured-image' ) .':</strong> '. __( 'Current theme does not support post thumbnails.', 'wen-featured-image' );
       echo '</p></div>';
+    }
+    // check if the transient is set, and display the error message
+    if ( 'no' == get_transient( 'wfi_req_check' ) ) {
+      echo '<div id="message" class="error"><p><strong>';
+      echo $this->options['required_message'];
+      echo '</strong></p></div>';
+      delete_transient( 'wfi_req_check' );
     }
 
   }
