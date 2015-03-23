@@ -77,11 +77,11 @@ class Wen_Featured_Image {
 		$this->wen_featured_image = 'wen-featured-image';
 		$this->version = '1.0.0';
 
-		$this->load_dependencies();
+    $this->load_dependencies();
     $this->set_locale();
-		$this->set_default_options();
-		$this->define_admin_hooks();
-		$this->define_public_hooks();
+    $this->set_default_options();
+    $this->define_admin_hooks();
+    $this->define_public_hooks();
 
 	}
 
@@ -190,9 +190,19 @@ class Wen_Featured_Image {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Wen_Featured_Image_Admin( $this->get_wen_featured_image(), $this->get_version(), $this->get_plugin_options() );
+    $plugin_admin = new Wen_Featured_Image_Admin( $this->get_wen_featured_image(), $this->get_version(), $this->get_plugin_options() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+    // Admin notices
+    $this->loader->add_action( 'admin_notices', $plugin_admin, 'wfi_admin_notices' );
+
+    // Support for Post Thumbnails
+    $this->loader->add_action( 'init', $plugin_admin, 'check_theme_support' );
+
+    // Plugin Options
+    $this->loader->add_action( 'admin_menu', $plugin_admin, 'setup_menu' );
+    $this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
+
+    $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
     $post_types = array();
@@ -208,11 +218,6 @@ class Wen_Featured_Image {
       }
     }
 
-    // $this->loader->add_filter( 'manage_post_posts_columns', $plugin_admin, 'posts_column_head' );
-    // $this->loader->add_filter( 'manage_page_posts_columns', $plugin_admin, 'posts_column_head' );
-    // $this->loader->add_action( 'manage_post_posts_custom_column', $plugin_admin, 'posts_column_content', 10, 2 );
-    // $this->loader->add_action( 'manage_page_posts_custom_column', $plugin_admin, 'posts_column_content', 10, 2 );
-
     // AJAX handling
     // Add
     $this->loader->add_action( 'wp_ajax_nopriv_wfi-add-featured-image', $plugin_admin, 'ajax_add_featured_image' );
@@ -227,13 +232,12 @@ class Wen_Featured_Image {
     // Template filtering
     $this->loader->add_filter( 'wen_featured_image_filter_block_template', $plugin_admin, 'custom_block_template' );
 
-    // Plugin Options
-    $this->loader->add_action( 'admin_menu', $plugin_admin, 'setup_menu' );
-    $this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
-
 
     // Message hooks
     $this->loader->add_filter( 'admin_post_thumbnail_html', $plugin_admin, 'custom_message_admin_featured_box' );
+
+
+
 
 	}
 
