@@ -196,7 +196,7 @@ class Wen_Featured_Image {
     $this->loader->add_action( 'admin_notices', $plugin_admin, 'wfi_admin_notices' );
 
     // Support for Post Thumbnails
-    $this->loader->add_action( 'init', $plugin_admin, 'check_theme_support' );
+    $this->loader->add_action( 'after_setup_theme', $plugin_admin, 'check_theme_support' );
 
     // Plugin Options
     $this->loader->add_action( 'admin_menu', $plugin_admin, 'setup_menu' );
