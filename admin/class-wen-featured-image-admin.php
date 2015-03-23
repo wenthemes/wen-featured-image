@@ -135,6 +135,11 @@ class Wen_Featured_Image_Admin {
 
     add_settings_field( 'wfi_field_image_column_cpt', __( 'Enable for', 'wen-featured-image' ), array( $this, 'wfi_field_image_column_cpt_callback' ), 'wen-featured-image-column', 'wfi_column_settings' );
 
+    // Required Settings
+    add_settings_section( 'wfi_required_settings', __( 'Required Featured Image Settings', 'wen-featured-image' ) , array( $this, 'plugin_section_required_text_callback' ), 'wen-featured-image-required' );
+
+    add_settings_field( 'wfi_field_image_required_cpt', __( 'Make required for', 'wen-featured-image' ), array( $this, 'wfi_field_image_required_cpt_callback' ), 'wen-featured-image-required', 'wfi_required_settings' );
+
     // Message Settings
     add_settings_section( 'wfi_message_settings', __( 'Message Settings', 'wen-featured-image' ) , array( $this, 'plugin_section_message_text_callback' ), 'wen-featured-image-message' );
 
@@ -154,6 +159,12 @@ class Wen_Featured_Image_Admin {
   function plugin_section_message_text_callback(){
 
     echo sprintf( __( 'These messages will be displayed in the %s metabox.', 'wen-featured-image' ), '<strong>' . __( 'Featured Image', 'wen-featured-image' ) . '</strong>' );
+
+  }
+
+  function plugin_section_required_text_callback(){
+
+    echo sprintf( __( 'Make %s required.', 'wen-featured-image' ), '<strong>' . __( 'Featured Image', 'wen-featured-image' ) . '</strong>' );
 
   }
 
@@ -215,6 +226,32 @@ class Wen_Featured_Image_Admin {
       ?>
       <label>
       <input type="checkbox" name="wen_featured_image_options[image_column_cpt][]" value="<?php echo esc_attr( $key ); ?>" <?php checked( true, in_array( $key, $post_types ) ) ; ?>/><span><?php echo esc_html( $post_type->labels->singular_name ); ?>&nbsp;<em>(<?php echo esc_html( $key ); ?>)</em></span></label><br/>
+      <?php
+    }
+
+  } //end function
+
+  function wfi_field_image_required_cpt_callback(){
+
+    $post_types_list = get_post_types( array(
+      'public'   => true,
+      ) , 'objects' );
+
+    // Remove attachment
+    if ( isset( $post_types_list['attachment'] ) ) {
+      unset( $post_types_list['attachment'] );
+    }
+
+    // Field option
+    $post_types = array();
+    if ( isset( $this->options['required_cpt'] ) ) {
+      $post_types = $this->options['required_cpt'];
+    }
+
+    foreach ( $post_types_list as $key => $post_type ){
+      ?>
+      <label>
+      <input type="checkbox" name="wen_featured_image_options[required_cpt][]" value="<?php echo esc_attr( $key ); ?>" <?php checked( true, in_array( $key, $post_types ) ) ; ?>/><span><?php echo esc_html( $post_type->labels->singular_name ); ?>&nbsp;<em>(<?php echo esc_html( $key ); ?>)</em></span></label><br/>
       <?php
     }
 

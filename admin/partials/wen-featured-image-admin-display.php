@@ -46,6 +46,14 @@
             <div class="postbox">
 
               <div class="inside">
+               <?php do_settings_sections( 'wen-featured-image-required' ); ?>
+             </div> <!-- .inside -->
+
+            </div> <!-- .postbox -->
+
+            <div class="postbox">
+
+              <div class="inside">
                <?php do_settings_sections( 'wen-featured-image-message' ); ?>
              </div> <!-- .inside -->
 
