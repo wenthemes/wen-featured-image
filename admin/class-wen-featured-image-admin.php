@@ -138,21 +138,22 @@ class Wen_Featured_Image_Admin {
     // Message Settings
     add_settings_section( 'wfi_message_settings', __( 'Message Settings', 'wen-featured-image' ) , array( $this, 'plugin_section_message_text_callback' ), 'wen-featured-image-message' );
 
-    add_settings_field( 'wfi_field_message_before', __( 'Before', 'wen-featured-image' ), array( $this, 'wfi_field_message_before_callback' ), 'wen-featured-image-message', 'wfi_message_settings' );
+    add_settings_field( 'wfi_field_message_before', __( 'Before Image', 'wen-featured-image' ), array( $this, 'wfi_field_message_before_callback' ), 'wen-featured-image-message', 'wfi_message_settings' );
 
-    add_settings_field( 'wfi_field_message_after', __( 'After', 'wen-featured-image' ), array( $this, 'wfi_field_message_after_callback' ), 'wen-featured-image-message', 'wfi_message_settings' );
+    add_settings_field( 'wfi_field_message_after', __( 'After Image', 'wen-featured-image' ), array( $this, 'wfi_field_message_after_callback' ), 'wen-featured-image-message', 'wfi_message_settings' );
 
     ////
 
   }
   function plugin_section_column_text_callback(){
 
-    return false;
+    echo sprintf( __( 'Enable / Disable %s column in listings.', 'wen-featured-image' ), '<strong>' . __( 'Featured Image', 'wen-featured-image' ) . '</strong>' );
 
   }
+
   function plugin_section_message_text_callback(){
 
-    return false;
+    echo sprintf( __( 'These messages will be displayed in the %s metabox.', 'wen-featured-image' ), '<strong>' . __( 'Featured Image', 'wen-featured-image' ) . '</strong>' );
 
   }
 
@@ -178,7 +179,7 @@ class Wen_Featured_Image_Admin {
       $message_before = $this->options['message_before'];
     }
     ?>
-    <textarea name="wen_featured_image_options[message_before]" rows="5"><?php echo esc_textarea( $message_before ); ?></textarea>
+    <textarea name="wen_featured_image_options[message_before]" rows="3" class="large-text"><?php echo esc_textarea( $message_before ); ?></textarea>
     <?php
   }
 
@@ -189,7 +190,7 @@ class Wen_Featured_Image_Admin {
       $message_after = $this->options['message_after'];
     }
     ?>
-    <textarea name="wen_featured_image_options[message_after]" rows="5"><?php echo esc_textarea( $message_after ); ?></textarea>
+    <textarea name="wen_featured_image_options[message_after]" rows="3" class="large-text"><?php echo esc_textarea( $message_after ); ?></textarea>
     <?php
   }
 
