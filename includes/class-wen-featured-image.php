@@ -231,6 +231,10 @@ class Wen_Featured_Image {
     $this->loader->add_action( 'admin_menu', $plugin_admin, 'setup_menu' );
     $this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
 
+
+    // Message hooks
+    $this->loader->add_filter( 'admin_post_thumbnail_html', $plugin_admin, 'custom_message_admin_featured_box' );
+
 	}
 
 	/**

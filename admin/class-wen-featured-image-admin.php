@@ -157,6 +157,17 @@ class Wen_Featured_Image_Admin {
   }
 
   function plugin_options_validate( $input ){
+
+    // Validate now
+    if ( current_user_can( 'unfiltered_html' ) ){
+      $input['message_before'] = $input['message_before'];
+      $input['message_after']  = $input['message_after'];
+    }
+    else{
+      $input['message_before'] = stripslashes( wp_filter_post_kses( addslashes( $input['message_before'] ) ) );
+      $input['message_after']  = stripslashes( wp_filter_post_kses( addslashes( $input['message_after'] ) ) );
+    }
+
     return $input;
   }
 
@@ -170,6 +181,7 @@ class Wen_Featured_Image_Admin {
     <textarea name="wen_featured_image_options[message_before]" rows="5"><?php echo esc_textarea( $message_before ); ?></textarea>
     <?php
   }
+
   function wfi_field_message_after_callback(){
     // Field option
     $message_after = '';
@@ -200,7 +212,8 @@ class Wen_Featured_Image_Admin {
 
     foreach ( $post_types_list as $key => $post_type ){
       ?>
-      <input type="checkbox" name="wen_featured_image_options[image_column_cpt][]" value="<?php echo esc_attr( $key ); ?>" <?php checked( true, in_array( $key, $post_types ) ) ; ?>/><span><?php echo esc_html( $post_type->labels->singular_name ); ?>&nbsp;<em>(<?php echo esc_html( $key ); ?>)</em></span><br/>
+      <label>
+      <input type="checkbox" name="wen_featured_image_options[image_column_cpt][]" value="<?php echo esc_attr( $key ); ?>" <?php checked( true, in_array( $key, $post_types ) ) ; ?>/><span><?php echo esc_html( $post_type->labels->singular_name ); ?>&nbsp;<em>(<?php echo esc_html( $key ); ?>)</em></span></label><br/>
       <?php
     }
 
@@ -371,6 +384,24 @@ class Wen_Featured_Image_Admin {
       $output['html']    = $this->get_image_block_html( 0, $post_id );
     }
     wp_send_json( $output );
+
+  }
+
+  function custom_message_admin_featured_box( $html ){
+
+    // Message Before
+    $message_before = $this->options['message_before'];
+    if ( ! empty( $message_before ) ) {
+      $message_before = sprintf( '<div class="wfi-message-before">%s</div>', $message_before );
+      $html = $message_before .  $html;
+    }
+    // Message After
+    $message_after = $this->options['message_after'];
+    if ( ! empty( $message_after ) ) {
+      $message_after = sprintf( '<div class="wfi-message-after">%s</div>', $message_after );
+      $html .= $message_after;
+    }
+    return $html;
 
   }
 
