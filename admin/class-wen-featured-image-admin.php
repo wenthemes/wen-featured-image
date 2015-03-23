@@ -140,6 +140,8 @@ class Wen_Featured_Image_Admin {
 
     add_settings_field( 'wfi_field_image_required_cpt', __( 'Make required for', 'wen-featured-image' ), array( $this, 'wfi_field_image_required_cpt_callback' ), 'wen-featured-image-required', 'wfi_required_settings' );
 
+    add_settings_field( 'wfi_field_image_required_message', __( 'Required Message', 'wen-featured-image' ), array( $this, 'wfi_field_image_required_message_callback' ), 'wen-featured-image-required', 'wfi_required_settings' );
+
     // Message Settings
     add_settings_section( 'wfi_message_settings', __( 'Message Settings', 'wen-featured-image' ) , array( $this, 'plugin_section_message_text_callback' ), 'wen-featured-image-message' );
 
@@ -202,6 +204,17 @@ class Wen_Featured_Image_Admin {
     }
     ?>
     <textarea name="wen_featured_image_options[message_after]" rows="3" class="large-text"><?php echo esc_textarea( $message_after ); ?></textarea>
+    <?php
+  }
+
+  function wfi_field_image_required_message_callback(){
+    // Field option
+    $required_message = '';
+    if ( isset( $this->options['required_message'] ) ) {
+      $required_message = $this->options['required_message'];
+    }
+    ?>
+    <input name="wen_featured_image_options[required_message]" class="large-text" type="text" value="<?php echo esc_attr( $required_message ); ?>">
     <?php
   }
 

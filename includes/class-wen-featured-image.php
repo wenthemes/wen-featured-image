@@ -159,6 +159,7 @@ class Wen_Featured_Image {
     $output = array(
       'image_column_cpt' => array( 'post' ),
       'required_cpt'     => array( 'post' ),
+      'required_message' => __( 'Featured Image is required to publish.', 'wen-featured-image' ),
       'message_before'   => '',
       'message_after'    => '',
     );
