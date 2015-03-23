@@ -85,3 +85,30 @@ function run_wen_featured_image() {
 
 }
 run_wen_featured_image();
+
+function wfi_required_thumbnail_check( $post_id ){
+
+  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ){
+    return;
+  }
+
+  if ( ! has_post_thumbnail( $post_id ) ) {
+    // set a transient to show the users an admin message
+    set_transient( 'wfi_req_check', 'no' );
+
+    // Change status to draft
+    // unhook this function so it doesn't loop infinitely
+    remove_action( 'save_post', 'wfi_required_thumbnail_check', 20 );
+    // update the post set it to draft
+    wp_update_post( array('ID' => $post_id, 'post_status' => 'draft') );
+
+    add_action( 'save_post', 'wfi_required_thumbnail_check', 20 );
+
+  }
+  else{
+    delete_transient( 'wfi_req_check' );
+  }
+
+  // nspre($_POST,'post',true);
+
+}

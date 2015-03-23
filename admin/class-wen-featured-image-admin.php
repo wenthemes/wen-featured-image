@@ -485,5 +485,19 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  function custom_redirect_post_location( $location, $post_id ){
+
+    global $post;
+
+    if ( ( $post->ID == $post_id ) &&  ( 'no' == get_transient( 'wfi_req_check' ) ) ) {
+      $new_url = remove_query_arg( 'message', $location );
+      $new_url = add_query_arg( array( 'message'=> 8 ), $new_url );
+      $location = $new_url;
+    }
+
+    return $location;
+
+  }
+
 
 }
