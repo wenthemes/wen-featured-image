@@ -130,14 +130,27 @@ class Wen_Featured_Image_Admin {
 
     ////
 
-    add_settings_section( 'wfi_general_settings', __( 'General Settings', 'wen-featured-image' ) , array( $this, 'plugin_section_general_text_callback'), 'wen-featured-image-general' );
+    // Column Settings
+    add_settings_section( 'wfi_column_settings', __( 'Image Column Settings', 'wen-featured-image' ) , array( $this, 'plugin_section_column_text_callback' ), 'wen-featured-image-column' );
 
-    add_settings_field( 'wfi_field_image_column_cpt', __( 'Enable Image Column for', 'wen-featured-image' ), array( $this, 'wfi_field_image_column_cpt_callback' ), 'wen-featured-image-general', 'wfi_general_settings');
+    add_settings_field( 'wfi_field_image_column_cpt', __( 'Enable for', 'wen-featured-image' ), array( $this, 'wfi_field_image_column_cpt_callback' ), 'wen-featured-image-column', 'wfi_column_settings' );
+
+    // Message Settings
+    add_settings_section( 'wfi_message_settings', __( 'Message Settings', 'wen-featured-image' ) , array( $this, 'plugin_section_message_text_callback' ), 'wen-featured-image-message' );
+
+    add_settings_field( 'wfi_field_message_before', __( 'Before', 'wen-featured-image' ), array( $this, 'wfi_field_message_before_callback' ), 'wen-featured-image-message', 'wfi_message_settings' );
+
+    add_settings_field( 'wfi_field_message_after', __( 'After', 'wen-featured-image' ), array( $this, 'wfi_field_message_after_callback' ), 'wen-featured-image-message', 'wfi_message_settings' );
 
     ////
 
   }
-  function plugin_section_general_text_callback(){
+  function plugin_section_column_text_callback(){
+
+    return false;
+
+  }
+  function plugin_section_message_text_callback(){
 
     return false;
 
@@ -145,6 +158,27 @@ class Wen_Featured_Image_Admin {
 
   function plugin_options_validate( $input ){
     return $input;
+  }
+
+  function wfi_field_message_before_callback(){
+    // Field option
+    $message_before = '';
+    if ( isset( $this->options['message_before'] ) ) {
+      $message_before = $this->options['message_before'];
+    }
+    ?>
+    <textarea name="wen_featured_image_options[message_before]" rows="5"><?php echo esc_textarea( $message_before ); ?></textarea>
+    <?php
+  }
+  function wfi_field_message_after_callback(){
+    // Field option
+    $message_after = '';
+    if ( isset( $this->options['message_after'] ) ) {
+      $message_after = $this->options['message_after'];
+    }
+    ?>
+    <textarea name="wen_featured_image_options[message_after]" rows="5"><?php echo esc_textarea( $message_after ); ?></textarea>
+    <?php
   }
 
   function wfi_field_image_column_cpt_callback(){

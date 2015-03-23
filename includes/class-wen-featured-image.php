@@ -158,6 +158,8 @@ class Wen_Featured_Image {
 
     $output = array(
       'image_column_cpt' => array( 'post' ),
+      'message_before'   => '',
+      'message_after'    => '',
     );
     return $output;
 

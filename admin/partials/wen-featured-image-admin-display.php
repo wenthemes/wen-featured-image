@@ -38,7 +38,15 @@
             <div class="postbox">
 
               <div class="inside">
-               <?php do_settings_sections( 'wen-featured-image-general' ); ?>
+               <?php do_settings_sections( 'wen-featured-image-column' ); ?>
+             </div> <!-- .inside -->
+
+            </div> <!-- .postbox -->
+
+            <div class="postbox">
+
+              <div class="inside">
+               <?php do_settings_sections( 'wen-featured-image-message' ); ?>
              </div> <!-- .inside -->
 
             </div> <!-- .postbox -->
