@@ -186,6 +186,14 @@ class Wen_Featured_Image_Admin {
       $input['message_after']  = stripslashes( wp_filter_post_kses( addslashes( $input['message_after'] ) ) );
     }
 
+    // CPTS
+    if ( ! isset( $input['image_column_cpt'] ) ) {
+      $input['image_column_cpt'] = array();
+    }
+    if ( ! isset( $input['required_cpt'] ) ) {
+      $input['required_cpt'] = array();
+    }
+
     return $input;
   }
 
