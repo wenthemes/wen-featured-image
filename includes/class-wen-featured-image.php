@@ -238,7 +238,7 @@ class Wen_Featured_Image {
     $this->loader->add_filter( 'admin_post_thumbnail_html', $plugin_admin, 'custom_message_admin_featured_box' );
 
     // Save hook
-    add_action( 'save_post', 'wfi_required_thumbnail_check', 20 );
+    $this->loader->add_action( 'save_post', $plugin_admin, 'wfi_required_thumbnail_check' );
     $this->loader->add_filter( 'redirect_post_location', $plugin_admin, 'custom_redirect_post_location', 10, 2 );
 
 	}

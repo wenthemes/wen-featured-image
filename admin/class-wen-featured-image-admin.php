@@ -499,5 +499,42 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  function wfi_required_thumbnail_check( $post_id ){
+
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ){
+      return;
+    }
+
+    if ( ! has_post_thumbnail( $post_id ) ) {
+
+      // set a transient to show the users an admin message
+      set_transient( 'wfi_req_check', 'no' );
+
+      // Change status to draft
+      global $wpdb, $post;
+
+      if ( $post = get_post( $post ) ) {
+
+        // Update post
+        $wpdb->update( $wpdb->posts, array( 'post_status' => 'draft' ), array( 'ID' => $post->ID ) );
+
+        // Clean post cache
+        clean_post_cache( $post->ID );
+
+        // Manage post transition
+        $old_status = $post->post_status;
+        $post->post_status = 'draft';
+        wp_transition_post_status( 'draft', $old_status, $post );
+
+      }
+
+    }
+    else{
+      delete_transient( 'wfi_req_check' );
+    }
+
+
+  }
+
 
 }
