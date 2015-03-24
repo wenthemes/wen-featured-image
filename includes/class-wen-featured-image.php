@@ -157,8 +157,8 @@ class Wen_Featured_Image {
   private function get_default_plugin_options(){
 
     $output = array(
-      'image_column_cpt' => array( 'post' ),
-      'required_cpt'     => array( 'post' ),
+      'image_column_cpt' => array( 'post', 'page' ),
+      'required_cpt'     => array(),
       'required_message' => __( 'Featured Image is required to publish.', 'wen-featured-image' ),
       'message_before'   => '',
       'message_after'    => '',
