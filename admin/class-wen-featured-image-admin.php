@@ -505,6 +505,17 @@ class Wen_Featured_Image_Admin {
       return;
     }
 
+    // Field option
+    $post_types = array();
+    if ( isset( $this->options['required_cpt'] ) ) {
+      $post_types = $this->options['required_cpt'];
+    }
+
+    // Bail if not selected post type
+    if ( ! in_array( get_post_type( $post_id ), $post_types ) ) {
+      return;
+    }
+
     if ( ! has_post_thumbnail( $post_id ) ) {
 
       // set a transient to show the users an admin message
