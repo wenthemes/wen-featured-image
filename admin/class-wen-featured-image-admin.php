@@ -302,12 +302,27 @@ class Wen_Featured_Image_Admin {
   function custom_block_template( $template ){
 
     global $post;
+
+    // Remove button as per user role
     if ( ! current_user_can( 'upload_files', $post->ID ) ) {
       $search_arr  = array( '{{add}}', '{{change}}', '{{remove}}' );
       $replace_arr = array( '', '', '' );
       $template = str_replace( $search_arr, $replace_arr, $template );
     }
+
+    // Check post type for required
+    $post_types = array();
+    if ( isset( $this->options['required_cpt'] ) ) {
+      $post_types = $this->options['required_cpt'];
+    }
+    if( in_array( get_post_type( $post ), $post_types ) ) {
+      $search_arr  = array( '{{remove}}' );
+      $replace_arr = array( '' );
+      $template = str_replace( $search_arr, $replace_arr, $template );
+    }
+
     return $template;
+
   }
 
   function get_image_block_html( $attachment_id, $post_id = null ){
