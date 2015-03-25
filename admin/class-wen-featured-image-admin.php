@@ -387,15 +387,21 @@ class Wen_Featured_Image_Admin {
     $value = str_replace( '{{remove}}', $remove_html, $value );
 
     // Change
+    $ajax_nonce = wp_create_nonce( 'wfi-change-' .  $post->ID );
+    $nonce_data = ' data-security="' . esc_attr( $ajax_nonce ) . '" ';
+
     $prev_data = '';
     if ( $attachment_id) {
       $prev_data = ' data-previous_attachment="' . $attachment_id . '" ';
     }
-    $change_html = '<a href="#"  data-post="' . esc_attr( $post->ID ) . '" data-uploader_title="' . __( 'Select Image', 'wen-featured-image' ) . '" data-uploader_button_text="' . __( 'Set As Featured', 'wen-featured-image' ) . '" class="wfi-btn-change" ' . $prev_data .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-update"></span></a>';
+    $change_html = '<a href="#"  data-post="' . esc_attr( $post->ID ) . '" data-uploader_title="' . __( 'Select Image', 'wen-featured-image' ) . '" data-uploader_button_text="' . __( 'Set As Featured', 'wen-featured-image' ) . '" class="wfi-btn-change" ' . $nonce_data . $prev_data .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-update"></span></a>';
     $value = str_replace( '{{change}}', $change_html, $value );
 
     // Add
-    $add_html = '<a href="#" data-post="' . esc_attr( $post->ID ) . '" data-uploader_title="' . __( 'Select Image', 'wen-featured-image' ) . '" data-uploader_button_text="' . __( 'Set As Featured', 'wen-featured-image' ) . '"  class="wfi-btn-add" ' .  ( ( $attachment_id ) ? ' style="display:none;" ' : '' ) . '><span class="dashicons dashicons-plus-alt"></span></a>';
+    $ajax_nonce = wp_create_nonce( 'wfi-add-' .  $post->ID );
+    $nonce_data = ' data-security="' . esc_attr( $ajax_nonce ) . '" ';
+
+    $add_html = '<a href="#" data-post="' . esc_attr( $post->ID ) . '" data-uploader_title="' . __( 'Select Image', 'wen-featured-image' ) . '" data-uploader_button_text="' . __( 'Set As Featured', 'wen-featured-image' ) . '"  class="wfi-btn-add" ' . $nonce_data . ( ( $attachment_id ) ? ' style="display:none;" ' : '' ) . '><span class="dashicons dashicons-plus-alt"></span></a>';
     $value = str_replace( '{{add}}', $add_html, $value );
 
     return $value;
@@ -425,9 +431,16 @@ class Wen_Featured_Image_Admin {
     if ( $post_id < 1 || $attachment_ID < 0) {
       wp_send_json( $output );
     }
+
+    // Check nonce
+    $nonce_check = check_ajax_referer( 'wfi-add-' . $post_id, 'security', false );
+    if ( true != $nonce_check ) {
+      wp_send_json( $output );
+    }
+
     $update = update_post_meta( $post_id, '_thumbnail_id', $attachment_ID );
     if ( $update) {
-      $output['status'] = 1;
+      $output['status']  = 1;
       $output['post_id'] = $post_id;
       $output['html']    = $this->get_image_block_html( $attachment_ID, $post_id );
     }
@@ -444,6 +457,13 @@ class Wen_Featured_Image_Admin {
     if ( $post_id < 1 || $attachment_ID < 0) {
       wp_send_json( $output );
     }
+
+    // Check nonce
+    $nonce_check = check_ajax_referer( 'wfi-change-' . $post_id, 'security', false );
+    if ( true != $nonce_check ) {
+      wp_send_json( $output );
+    }
+
     $update = update_post_meta( $post_id, '_thumbnail_id', $attachment_ID );
     if ( $update) {
       $output['status']  = 1;

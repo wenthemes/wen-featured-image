@@ -70,6 +70,7 @@ var wfi_file_frame;
             {
                 action : 'wfi-add-featured-image',
                 post_id : $this.data('post'),
+                security : $this.data('security'),
                 attachment_ID : attachment.id
             },
             function( response ) {
@@ -121,6 +122,7 @@ var wfi_file_frame;
             WFI_OBJ.ajaxurl,
             {
                 action : 'wfi-change-featured-image',
+                security : $this.data('security'),
                 post_id : $this.data('post'),
                 attachment_ID : attachment.id
             },
