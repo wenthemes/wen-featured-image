@@ -18,7 +18,7 @@ var wfi_file_frame;
       var $this = $(this);
       event.preventDefault();
 
-      var confirmation = confirm('Are you sure?');
+      var confirmation = confirm( WFI_OBJ.lang.are_you_sure );
       if ( ! confirmation) {
         return false;
       }

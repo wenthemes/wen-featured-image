@@ -107,6 +107,9 @@ class Wen_Featured_Image_Admin {
 		wp_register_script( $this->wen_featured_image, plugin_dir_url( __FILE__ ) . 'js/wen-featured-image-admin.js', array( 'jquery' ), $this->version, false );
     $extra_array = array(
       'ajaxurl' => admin_url( 'admin-ajax.php' ),
+      'lang' => array(
+          'are_you_sure' => __( 'Are you sure?', 'wen-featured-image' ),
+        ),
       );
     wp_localize_script( $this->wen_featured_image, 'WFI_OBJ', $extra_array );
     wp_enqueue_script( $this->wen_featured_image );
@@ -362,7 +365,7 @@ class Wen_Featured_Image_Admin {
     $image_start = '';
     $image_end   = '';
     if ( $attachment_id ) {
-      $image_start = '<a href="' .  ( ( $attachment_id ) ? esc_url( $full_url ) : '' ) . '" class="wfi-image thickbox" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . ' title="' . esc_attr( $img_detail['title'] ) . '">';
+      $image_start = '<a href="' .  ( ( $attachment_id ) ? esc_url( $full_url ) : '' ) . '" class="wfi-image thickbox" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . ' title="' . esc_attr( $img_detail['title'] ) . '" data-uploader_title="asdf">';
       $image_end   = '</a>';
     }
     $image_html = $image_start . '<img src="' . esc_url( $thumbnail_url ). '" style="max-width:80px;"/>' . $image_end;
@@ -382,11 +385,11 @@ class Wen_Featured_Image_Admin {
     $value = str_replace( '{{remove}}', $remove_html, $value );
 
     // Change
-    $change_html = '<a href="#"  data-post="' . esc_attr( $post->ID ) . '" class="wfi-btn-change" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-update"></span></a>';
+    $change_html = '<a href="#"  data-post="' . esc_attr( $post->ID ) . '" data-uploader_title="' . __( 'Select Image', 'wen-featured-image' ) . '" data-uploader_button_text="' . __( 'Set As Featured', 'wen-featured-image' ) . '" class="wfi-btn-change" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-update"></span></a>';
     $value = str_replace( '{{change}}', $change_html, $value );
 
     // Add
-    $add_html = '<a href="#" data-post="' . esc_attr( $post->ID ) . '" class="wfi-btn-add" ' .  ( ( $attachment_id ) ? ' style="display:none;" ' : '' ) . '><span class="dashicons dashicons-plus-alt"></span></a>';
+    $add_html = '<a href="#" data-post="' . esc_attr( $post->ID ) . '" data-uploader_title="' . __( 'Select Image', 'wen-featured-image' ) . '" data-uploader_button_text="' . __( 'Set As Featured', 'wen-featured-image' ) . '"  class="wfi-btn-add" ' .  ( ( $attachment_id ) ? ' style="display:none;" ' : '' ) . '><span class="dashicons dashicons-plus-alt"></span></a>';
     $value = str_replace( '{{add}}', $add_html, $value );
 
     return $value;
