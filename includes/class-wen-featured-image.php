@@ -171,17 +171,6 @@ class Wen_Featured_Image {
     return get_option( 'wen_featured_image_options', $this->get_default_plugin_options() );
 
   }
-  public function get_option( $key = '' ){
-    $output = '';
-    if ( empty( $key ) ) {
-      return $output;
-    }
-    // $plugin_options = get_option();
-
-    return 'aaluu';
-  }
-
-
 
 	/**
 	 * Register all of the hooks related to the admin area functionality
