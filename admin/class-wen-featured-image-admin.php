@@ -570,5 +570,18 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  function add_links_in_plugin_listing( $links ){
+
+    $url = add_query_arg( array(
+        'page' => $this->wen_featured_image
+      ),
+      admin_url( 'admin.php' )
+    );
+    $settings_link = '<a href="' . esc_url( $url ) . '">'. esc_html( __( 'Settings', 'wen-featured-image' ) ) . '</a>';
+    array_unshift( $links, $settings_link );
+    return $links;
+
+  }
+
 
 }

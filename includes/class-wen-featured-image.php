@@ -241,6 +241,9 @@ class Wen_Featured_Image {
     $this->loader->add_action( 'save_post', $plugin_admin, 'wfi_required_thumbnail_check' );
     $this->loader->add_filter( 'redirect_post_location', $plugin_admin, 'custom_redirect_post_location', 10, 2 );
 
+    // Settings links in plugin listing
+    $this->loader->add_filter( "plugin_action_links_" . WEN_FEATURED_IMAGE_BASE_FILE , $plugin_admin, 'add_links_in_plugin_listing' );
+
 	}
 
 	/**
