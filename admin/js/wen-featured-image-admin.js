@@ -52,6 +52,9 @@ var wfi_file_frame;
         button: {
           text: jQuery( this ).data( 'uploader_button_text' ),
         },
+        library: {
+            type: 'image'
+        },
         multiple: false  // Set to true to allow multiple files to be selected
       });
 
@@ -94,6 +97,9 @@ var wfi_file_frame;
         title: jQuery( this ).data( 'uploader_title' ),
         button: {
           text: jQuery( this ).data( 'uploader_button_text' ),
+        },
+        library: {
+            type: 'image'
         },
         multiple: false  // Set to true to allow multiple files to be selected
       });
