@@ -381,7 +381,9 @@ class Wen_Featured_Image_Admin {
     $value = str_replace( '{{preview}}', $preview_html, $value );
 
     // Remove
-    $remove_html = '<a href="#"  data-post="' . esc_attr( $post->ID ) . '" class="wfi-btn-remove" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-trash"></span></a>';
+    $ajax_nonce = wp_create_nonce( 'wfi-delete-' .  $post->ID );
+    $nonce_data = ' data-security="' . esc_attr( $ajax_nonce ) . '" ';
+    $remove_html = '<a href="#"  data-post="' . esc_attr( $post->ID ) . '" ' . $nonce_data . 'class="wfi-btn-remove" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-trash"></span></a>';
     $value = str_replace( '{{remove}}', $remove_html, $value );
 
     // Change
@@ -462,6 +464,13 @@ class Wen_Featured_Image_Admin {
     if ( $post_id < 1 ) {
       wp_send_json( $output );
     }
+
+    // Check nonce
+    $nonce_check = check_ajax_referer( 'wfi-delete-' . $post_id, 'security', false );
+    if ( true != $nonce_check ) {
+      wp_send_json( $output );
+    }
+
     $delete = delete_post_meta( $post_id, '_thumbnail_id' );
     if ( $delete ) {
       $output['status']  = 1;

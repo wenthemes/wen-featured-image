@@ -26,6 +26,7 @@ var wfi_file_frame;
           WFI_OBJ.ajaxurl,
           {
               action : 'wfi-remove-featured-image',
+              security : $this.data('security'),
               post_id : $this.data('post')
           },
           function( response ) {
