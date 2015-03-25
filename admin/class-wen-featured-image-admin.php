@@ -385,7 +385,11 @@ class Wen_Featured_Image_Admin {
     $value = str_replace( '{{remove}}', $remove_html, $value );
 
     // Change
-    $change_html = '<a href="#"  data-post="' . esc_attr( $post->ID ) . '" data-uploader_title="' . __( 'Select Image', 'wen-featured-image' ) . '" data-uploader_button_text="' . __( 'Set As Featured', 'wen-featured-image' ) . '" class="wfi-btn-change" ' .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-update"></span></a>';
+    $prev_data = '';
+    if ( $attachment_id) {
+      $prev_data = ' data-previous_attachment="' . $attachment_id . '" ';
+    }
+    $change_html = '<a href="#"  data-post="' . esc_attr( $post->ID ) . '" data-uploader_title="' . __( 'Select Image', 'wen-featured-image' ) . '" data-uploader_button_text="' . __( 'Set As Featured', 'wen-featured-image' ) . '" class="wfi-btn-change" ' . $prev_data .  ( ( $attachment_id ) ? '' : ' style="display:none;" ' ) . '><span class="dashicons dashicons-update"></span></a>';
     $value = str_replace( '{{change}}', $change_html, $value );
 
     // Add

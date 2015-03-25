@@ -104,7 +104,13 @@ var wfi_file_frame;
         multiple: false  // Set to true to allow multiple files to be selected
       });
 
-
+      wfi_file_frame.on('open', function(){
+          var selection = wfi_file_frame.state().get('selection');
+          var selected = $this.data('previous_attachment'); // the id of the image
+          if (selected) {
+              selection.add(wp.media.attachment(selected));
+          }
+      });
 
       // When an image is selected, run a callback.
       wfi_file_frame.on( 'select', function() {
