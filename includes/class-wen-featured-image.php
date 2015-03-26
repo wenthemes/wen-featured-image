@@ -93,7 +93,6 @@ class Wen_Featured_Image {
     $this->set_locale();
     $this->set_default_options();
     $this->define_admin_hooks();
-    $this->define_public_hooks();
 
 	}
 
@@ -105,7 +104,6 @@ class Wen_Featured_Image {
 	 * - Wen_Featured_Image_Loader. Orchestrates the hooks of the plugin.
 	 * - Wen_Featured_Image_i18n. Defines internationalization functionality.
 	 * - Wen_Featured_Image_Admin. Defines all hooks for the admin area.
-	 * - Wen_Featured_Image_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -131,12 +129,6 @@ class Wen_Featured_Image {
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wen-featured-image-admin.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wen-featured-image-public.php';
 
 		$this->loader = new Wen_Featured_Image_Loader();
 
@@ -245,22 +237,6 @@ class Wen_Featured_Image {
 
     // Settings links in plugin listing
     $this->loader->add_filter( "plugin_action_links_" . WEN_FEATURED_IMAGE_BASE_FILE , $plugin_admin, 'add_links_in_plugin_listing' );
-
-	}
-
-	/**
-	 * Register all of the hooks related to the public-facing functionality
-	 * of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function define_public_hooks() {
-
-		$plugin_public = new Wen_Featured_Image_Public( $this->get_wen_featured_image(), $this->get_version(), $this->get_plugin_options() );
-
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 	}
 
