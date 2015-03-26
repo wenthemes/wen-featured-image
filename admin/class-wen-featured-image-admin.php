@@ -75,6 +75,12 @@ class Wen_Featured_Image_Admin {
 		 * class.
 		 */
 
+    global $pagenow;
+
+    if ( 'edit.php' != $pagenow ) {
+      return;
+    }
+
     wp_enqueue_style('thickbox');
 
 		wp_enqueue_style( $this->wen_featured_image, plugin_dir_url( __FILE__ ) . 'css/wen-featured-image-admin.css', array(), $this->version, 'all' );
@@ -99,6 +105,12 @@ class Wen_Featured_Image_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+
+    global $pagenow;
+
+    if ( 'edit.php' != $pagenow ) {
+      return;
+    }
 
     wp_enqueue_script('thickbox');
 

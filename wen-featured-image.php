@@ -40,7 +40,7 @@ define( 'WEN_FEATURED_IMAGE_URL', rtrim( plugin_dir_url( __FILE__ ), '/' ) );
 
 
 //  Load WEN Addons
-// require_once WEN_FEATURED_IMAGE_DIR . '/wen-addons/wen_addons.php';
+require_once WEN_FEATURED_IMAGE_DIR . '/wen-addons/wen_addons.php';
 
 
 /**
