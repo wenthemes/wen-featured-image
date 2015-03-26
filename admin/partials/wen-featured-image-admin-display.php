@@ -61,7 +61,7 @@
 
           </div> <!-- .meta-box-sortables .ui-sortable -->
 
-          <?php submit_button(__( 'Save Changes', 'wen-featured-image' )); ?>
+          <?php submit_button( __( 'Save Changes', 'wen-featured-image' ) ); ?>
 
           </form>
 
@@ -70,7 +70,7 @@
       <!-- sidebar -->
       <div id="postbox-container-1" class="postbox-container">
 
-        <?php // require_once( SIMPLE_REGISTER_DIR.'/admin/includes/admin-right.php'); ?>
+        <?php require_once( WEN_FEATURED_IMAGE_DIR . '/admin/partials/wen-featured-image-admin-right-display.php' ); ?>
 
       </div> <!-- #postbox-container-1 .postbox-container -->
 
