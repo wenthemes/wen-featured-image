@@ -511,7 +511,16 @@ class Wen_Featured_Image_Admin {
 
   }
 
-  function custom_message_admin_featured_box( $html ){
+  function custom_message_admin_featured_box( $html, $post_id ){
+
+    $post_types = array();
+    if ( isset( $this->options['message_cpt'] ) ) {
+      $post_types = $this->options['message_cpt'];
+    }
+
+    if ( ! in_array( get_post_type( $post_id ), $post_types ) ) {
+      return $html;
+    }
 
     // Message Before
     $message_before = $this->options['message_before'];

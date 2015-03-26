@@ -225,7 +225,7 @@ class Wen_Featured_Image {
     $this->loader->add_filter( 'wen_featured_image_filter_block_template', $plugin_admin, 'custom_block_template' );
 
     // Message hooks
-    $this->loader->add_filter( 'admin_post_thumbnail_html', $plugin_admin, 'custom_message_admin_featured_box' );
+    $this->loader->add_filter( 'admin_post_thumbnail_html', $plugin_admin, 'custom_message_admin_featured_box', 10, 2 );
 
     // Save hook
     $this->loader->add_action( 'save_post', $plugin_admin, 'wfi_required_thumbnail_check' );
