@@ -707,6 +707,11 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  /**
+   * Check if image is added for required.
+   *
+   * @since    1.0.0
+   */
   function wfi_required_thumbnail_check( $post_id ){
 
     if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ){
@@ -752,9 +757,13 @@ class Wen_Featured_Image_Admin {
       delete_transient( 'wfi_req_check' );
     }
 
-
   }
 
+  /**
+   * Add settings link in plugin listing.
+   *
+   * @since    1.0.0
+   */
   function add_links_in_plugin_listing( $links ){
 
     $url = add_query_arg( array(
@@ -767,6 +776,5 @@ class Wen_Featured_Image_Admin {
     return $links;
 
   }
-
 
 }
