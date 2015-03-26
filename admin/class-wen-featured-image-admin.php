@@ -136,17 +136,19 @@ class Wen_Featured_Image_Admin {
     // Column Settings
     add_settings_section( 'wfi_column_settings', __( 'Image Column Settings', 'wen-featured-image' ) , array( $this, 'plugin_section_column_text_callback' ), 'wen-featured-image-column' );
 
-    add_settings_field( 'wfi_field_image_column_cpt', __( 'Enable for', 'wen-featured-image' ), array( $this, 'wfi_field_image_column_cpt_callback' ), 'wen-featured-image-column', 'wfi_column_settings' );
+    add_settings_field( 'wfi_field_image_column_cpt', __( 'Enable For', 'wen-featured-image' ), array( $this, 'wfi_field_image_column_cpt_callback' ), 'wen-featured-image-column', 'wfi_column_settings' );
 
     // Required Settings
     add_settings_section( 'wfi_required_settings', __( 'Required Featured Image Settings', 'wen-featured-image' ) , array( $this, 'plugin_section_required_text_callback' ), 'wen-featured-image-required' );
 
-    add_settings_field( 'wfi_field_image_required_cpt', __( 'Make required for', 'wen-featured-image' ), array( $this, 'wfi_field_image_required_cpt_callback' ), 'wen-featured-image-required', 'wfi_required_settings' );
+    add_settings_field( 'wfi_field_image_required_cpt', __( 'Make Required For', 'wen-featured-image' ), array( $this, 'wfi_field_image_required_cpt_callback' ), 'wen-featured-image-required', 'wfi_required_settings' );
 
     add_settings_field( 'wfi_field_image_required_message', __( 'Required Message', 'wen-featured-image' ), array( $this, 'wfi_field_image_required_message_callback' ), 'wen-featured-image-required', 'wfi_required_settings' );
 
     // Message Settings
     add_settings_section( 'wfi_message_settings', __( 'Message Settings', 'wen-featured-image' ) , array( $this, 'plugin_section_message_text_callback' ), 'wen-featured-image-message' );
+
+    add_settings_field( 'wfi_field_image_message_cpt', __( 'Show Message For', 'wen-featured-image' ), array( $this, 'wfi_field_image_message_cpt_callback' ), 'wen-featured-image-message', 'wfi_message_settings' );
 
     add_settings_field( 'wfi_field_message_before', __( 'Before Image', 'wen-featured-image' ), array( $this, 'wfi_field_message_before_callback' ), 'wen-featured-image-message', 'wfi_message_settings' );
 
@@ -196,6 +198,9 @@ class Wen_Featured_Image_Admin {
     if ( ! isset( $input['required_cpt'] ) ) {
       $input['required_cpt'] = array();
     }
+    if ( ! isset( $input['message_cpt'] ) ) {
+      $input['message_cpt'] = array();
+    }
 
     return $input;
   }
@@ -233,7 +238,9 @@ class Wen_Featured_Image_Admin {
     <?php
   }
 
-  function wfi_field_image_column_cpt_callback(){
+  protected function get_post_types_options(){
+
+    $post_types_list = array();
 
     $post_types_list = get_post_types( array(
       'public'   => true,
@@ -243,45 +250,48 @@ class Wen_Featured_Image_Admin {
     if ( isset( $post_types_list['attachment'] ) ) {
       unset( $post_types_list['attachment'] );
     }
+    return $post_types_list;
+  }
+
+  protected function render_post_types_field( $field_name ){
+
+    $post_types_list = $this->get_post_types_options();
 
     // Field option
     $post_types = array();
-    if ( isset( $this->options['image_column_cpt'] ) ) {
-      $post_types = $this->options['image_column_cpt'];
+    if ( isset( $this->options[ $field_name ] ) ) {
+      $post_types = $this->options[ $field_name ];
     }
 
+    $input_name = 'wen_featured_image_options[' . $field_name . '][]';
     foreach ( $post_types_list as $key => $post_type ){
       ?>
       <label>
-      <input type="checkbox" name="wen_featured_image_options[image_column_cpt][]" value="<?php echo esc_attr( $key ); ?>" <?php checked( true, in_array( $key, $post_types ) ) ; ?>/><span><?php echo esc_html( $post_type->labels->singular_name ); ?>&nbsp;<em>(<?php echo esc_html( $key ); ?>)</em></span></label><br/>
+      <input type="checkbox" name="<?php echo esc_attr( $input_name ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( true, in_array( $key, $post_types ) ) ; ?>/><span><?php echo esc_html( $post_type->labels->singular_name ); ?>&nbsp;<em>(<?php echo esc_html( $key ); ?>)</em></span></label><br/>
       <?php
     }
+
+  }
+
+  function wfi_field_image_column_cpt_callback(){
+
+    $field_name = 'image_column_cpt';
+    $this->render_post_types_field( $field_name );
+
 
   } //end function
 
   function wfi_field_image_required_cpt_callback(){
 
-    $post_types_list = get_post_types( array(
-      'public'   => true,
-      ) , 'objects' );
+    $field_name = 'required_cpt';
+    $this->render_post_types_field( $field_name );
 
-    // Remove attachment
-    if ( isset( $post_types_list['attachment'] ) ) {
-      unset( $post_types_list['attachment'] );
-    }
+  } //end function
 
-    // Field option
-    $post_types = array();
-    if ( isset( $this->options['required_cpt'] ) ) {
-      $post_types = $this->options['required_cpt'];
-    }
+  function wfi_field_image_message_cpt_callback(){
 
-    foreach ( $post_types_list as $key => $post_type ){
-      ?>
-      <label>
-      <input type="checkbox" name="wen_featured_image_options[required_cpt][]" value="<?php echo esc_attr( $key ); ?>" <?php checked( true, in_array( $key, $post_types ) ) ; ?>/><span><?php echo esc_html( $post_type->labels->singular_name ); ?>&nbsp;<em>(<?php echo esc_html( $key ); ?>)</em></span></label><br/>
-      <?php
-    }
+    $field_name = 'message_cpt';
+    $this->render_post_types_field( $field_name );
 
   } //end function
 
