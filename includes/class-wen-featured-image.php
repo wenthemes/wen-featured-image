@@ -48,19 +48,31 @@ class Wen_Featured_Image {
 	 */
 	protected $wen_featured_image;
 
+  /**
+   * The current version of the plugin.
+   *
+   * @since    1.0.0
+   * @access   protected
+   * @var      string    $version    The current version of the plugin.
+   */
+  protected $version;
+
+  /**
+   * Default plugin options.
+   *
+   * @since    1.0.0
+   * @access   protected
+   * @var      string    $defaults    Default plugin options.
+   */
+  protected $defaults;
+
 	/**
-	 * The current version of the plugin.
+	 * Plugin options.
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $version    The current version of the plugin.
+	 * @var      string    $defaults    Plugin options.
 	 */
-  protected $version;
-
-  // Default options
-  protected $defaults;
-
-  // Plugin options
 	protected $options;
 
 	/**
