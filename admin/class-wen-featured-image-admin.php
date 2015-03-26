@@ -116,22 +116,36 @@ class Wen_Featured_Image_Admin {
 
 	}
 
+  /**
+   * Setup admin menu.
+   *
+   * @since    1.0.0
+   */
   function setup_menu(){
+
     if( class_exists( 'WEN_Addons' ) ){
       add_submenu_page( WEN_Addons::$menu_name, __( 'WEN Featured Image', 'wen-featured-image' ), __( 'WEN Featured Image', 'wen-featured-image' ), 'manage_options', 'wen-featured-image', array( &$this,'option_page_init' ) );
     }
-    // add_action( 'admin_init', array(&$this,'register_settings' ));
+
   }
 
+  /**
+   * Initialize admin settings page.
+   *
+   * @since    1.0.0
+   */
   function option_page_init(){
     include( sprintf( "%s/partials/wen-featured-image-admin-display.php", dirname( __FILE__ ) ) );
   }
 
+  /**
+   * Register plugin settings.
+   *
+   * @since    1.0.0
+   */
   function register_settings(){
 
     register_setting( 'wfi-plugin-options-group', 'wen_featured_image_options', array( $this, 'plugin_options_validate' ) );
-
-    ////
 
     // Column Settings
     add_settings_section( 'wfi_column_settings', __( 'Image Column Settings', 'wen-featured-image' ) , array( $this, 'plugin_section_column_text_callback' ), 'wen-featured-image-column' );
@@ -157,24 +171,45 @@ class Wen_Featured_Image_Admin {
     ////
 
   }
+
+  /**
+   * Callback function to display heading in column section.
+   *
+   * @since    1.0.0
+   */
   function plugin_section_column_text_callback(){
 
     echo sprintf( __( 'Enable / Disable %s column in listings.', 'wen-featured-image' ), '<strong>' . __( 'Featured Image', 'wen-featured-image' ) . '</strong>' );
 
   }
 
+  /**
+   * Callback function to display heading in message section.
+   *
+   * @since    1.0.0
+   */
   function plugin_section_message_text_callback(){
 
     echo sprintf( __( 'These messages will be displayed in the %s metabox.', 'wen-featured-image' ), '<strong>' . __( 'Featured Image', 'wen-featured-image' ) . '</strong>' );
 
   }
 
+  /**
+   * Callback function to display heading in required section.
+   *
+   * @since    1.0.0
+   */
   function plugin_section_required_text_callback(){
 
     echo sprintf( __( 'Make %s required.', 'wen-featured-image' ), '<strong>' . __( 'Featured Image', 'wen-featured-image' ) . '</strong>' );
 
   }
 
+  /**
+   * Validate plugin options.
+   *
+   * @since    1.0.0
+   */
   function plugin_options_validate( $input ){
 
     // Validate now
@@ -205,6 +240,11 @@ class Wen_Featured_Image_Admin {
     return $input;
   }
 
+  /**
+   * Callback function for settings field - message_before.
+   *
+   * @since    1.0.0
+   */
   function wfi_field_message_before_callback(){
     // Field option
     $message_before = '';
@@ -216,6 +256,11 @@ class Wen_Featured_Image_Admin {
     <?php
   }
 
+  /**
+   * Callback function for settings field - message_after.
+   *
+   * @since    1.0.0
+   */
   function wfi_field_message_after_callback(){
     // Field option
     $message_after = '';
@@ -227,6 +272,11 @@ class Wen_Featured_Image_Admin {
     <?php
   }
 
+  /**
+   * Callback function for settings field - required_message.
+   *
+   * @since    1.0.0
+   */
   function wfi_field_image_required_message_callback(){
     // Field option
     $required_message = '';
@@ -238,6 +288,11 @@ class Wen_Featured_Image_Admin {
     <?php
   }
 
+  /**
+   * Get registered post types lists.
+   *
+   * @since    1.0.0
+   */
   protected function get_post_types_options(){
 
     $post_types_list = array();
@@ -253,6 +308,11 @@ class Wen_Featured_Image_Admin {
     return $post_types_list;
   }
 
+  /**
+   * Render post types field.
+   *
+   * @since    1.0.0
+   */
   protected function render_post_types_field( $field_name ){
 
     $post_types_list = $this->get_post_types_options();
@@ -273,14 +333,23 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  /**
+   * Callback function for settings field - image_column_cpt.
+   *
+   * @since    1.0.0
+   */
   function wfi_field_image_column_cpt_callback(){
 
     $field_name = 'image_column_cpt';
     $this->render_post_types_field( $field_name );
 
-
   } //end function
 
+  /**
+   * Callback function for settings field - required_cpt.
+   *
+   * @since    1.0.0
+   */
   function wfi_field_image_required_cpt_callback(){
 
     $field_name = 'required_cpt';
@@ -288,6 +357,11 @@ class Wen_Featured_Image_Admin {
 
   } //end function
 
+  /**
+   * Callback function for settings field - message_cpt.
+   *
+   * @since    1.0.0
+   */
   function wfi_field_image_message_cpt_callback(){
 
     $field_name = 'message_cpt';
@@ -295,7 +369,11 @@ class Wen_Featured_Image_Admin {
 
   } //end function
 
-
+  /**
+   * Column heading in admin listing.
+   *
+   * @since    1.0.0
+   */
   function posts_column_head( $columns ){
 
     $columns['wfi_image'] = __( 'Featured Image', 'wen-featured-image' );
@@ -304,6 +382,11 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  /**
+   * Funtion which returns image block template.
+   *
+   * @since    1.0.0
+   */
   function get_image_block_template(){
 
     $template = '';
@@ -320,6 +403,11 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  /**
+   * Customize image block template.
+   *
+   * @since    1.0.0
+   */
   function custom_block_template( $template ){
 
     global $post;
@@ -346,6 +434,11 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  /**
+   * Returns image block HTML.
+   *
+   * @since    1.0.0
+   */
   function get_image_block_html( $attachment_id, $post_id = null ){
 
     global $post;
@@ -354,9 +447,10 @@ class Wen_Featured_Image_Admin {
     }
 
     if ( $attachment_id ) {
+
       // Image detail
       $img_detail = wp_prepare_attachment_for_js( $attachment_id );
-      // nspre($img_detail);
+
       // Image URLs
       $thumbnail_url = $img_detail['sizes']['thumbnail']['url'];
       $full_url      = $img_detail['sizes']['full']['url'];
@@ -418,6 +512,11 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  /**
+   * Callback function for column content.
+   *
+   * @since    1.0.0
+   */
   function posts_column_content( $column, $post_id ){
 
     if ( 'wfi_image' == $column ) {
@@ -431,6 +530,11 @@ class Wen_Featured_Image_Admin {
 
   } //end function
 
+  /**
+   * AJAX callback to add featured image.
+   *
+   * @since    1.0.0
+   */
   function ajax_add_featured_image(){
 
     $output = array();
@@ -457,6 +561,12 @@ class Wen_Featured_Image_Admin {
     wp_send_json( $output );
 
   }
+
+  /**
+   * AJAX callback to change featured image.
+   *
+   * @since    1.0.0
+   */
   function ajax_change_featured_image(){
 
     $output = array();
@@ -484,6 +594,11 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  /**
+   * AJAX callback to remove featured image.
+   *
+   * @since    1.0.0
+   */
   function ajax_remove_featured_image(){
 
     $output = array();
@@ -511,6 +626,11 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  /**
+   * Add messages before and after featured image in Featured Image metabox.
+   *
+   * @since    1.0.0
+   */
   function custom_message_admin_featured_box( $html, $post_id ){
 
     $post_types = array();
@@ -538,13 +658,13 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  /**
+   * Display error message if featured image is required.
+   *
+   * @since    1.0.0
+   */
   function wfi_admin_notices(){
 
-    if( ! current_theme_supports( 'post-thumbnails' ) ) {
-      echo '<div id="message" class="error"><p>';
-      echo '<strong>' . __( 'WEN Featured Image', 'wen-featured-image' ) .':</strong> '. __( 'Current theme does not support post thumbnails.', 'wen-featured-image' );
-      echo '</p></div>';
-    }
     // check if the transient is set, and display the error message
     if ( 'no' == get_transient( 'wfi_req_check' ) ) {
       echo '<div id="message" class="error"><p><strong>';
@@ -555,6 +675,11 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  /**
+   * Check if current theme have support for post thumbnails.
+   *
+   * @since    1.0.0
+   */
   function check_theme_support(){
 
     if( ! current_theme_supports( 'post-thumbnails' ) ) {
@@ -563,6 +688,11 @@ class Wen_Featured_Image_Admin {
 
   }
 
+  /**
+   * Modify redirect URL if image is not added in required post.
+   *
+   * @since    1.0.0
+   */
   function custom_redirect_post_location( $location, $post_id ){
 
     global $post;
