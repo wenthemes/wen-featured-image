@@ -1,114 +1,64 @@
-=== Plugin Name ===
-Contributors: (this should be a list of wordpress.org userid's)
+=== WEN Featured Image ===
+Contributors: wenthemes
 Donate link: http://wenthemes.com
-Tags: comments, spam
-Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
+Tags: image, featured image, admin,
+Requires at least: 3.8
+Tested up to: 4.2
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Add featured image column in listings. Add/change/remove featured image directly from the listing page
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+<h3>WEN Featured Image</h3>This plugin helps you to manage featured image for your post or pages in easy way. This will display featured image in the separate column in the listings. You can easily add/edit/remove featured image from the listing page. You can also force featured image for selected post types.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+Plugin: [Home Page](http://wenthemes.com/item/wordpress-plugins/wen-featured-image/)
 
-A few notes about the sections above:
+If you like this plugin, please [rate and review](http://wordpress.org/support/view/plugin-reviews/wen-featured-image).
+If you have any question, suggestion or issue, please [post here](http://wordpress.org/support/plugin/wen-featured-image).
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
-
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+= Using The WordPress Dashboard =
 
-e.g.
+1. Navigate to the 'Add New' in the plugins dashboard
+2. Search for `wen-featured-image`
+3. Click `Install Now`
+4. Activate the plugin on the Plugin dashboard
 
-1. Upload `wen-featured-image.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('wen_featured_image_hook'); ?>` in your templates
+= Uploading in WordPress Dashboard =
+
+1. Navigate to the 'Add New' in the plugins dashboard
+2. Navigate to the 'Upload' area
+3. Select `wen-featured-image.zip` from your computer
+4. Click 'Install Now'
+5. Activate the plugin in the Plugin dashboard
+
+= Using FTP =
+
+1. Download `wen-featured-image.zip`
+2. Extract the `wen-featured-image` directory to your computer
+3. Upload the `wen-featured-image` directory to the `/wp-content/plugins/` directory
+4. Activate the plugin in the Plugin dashboard
+
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= There is something cool you could add... =
 
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
+Nice, make a post on the [Support Forum](http://wordpress.org/support/plugin/wen-featured-image "WEN Featured Image Support") and let us know. We are always looking for ways to improve our plugins.
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Featured Image column in admin listing
 
 == Changelog ==
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
-
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
+= 1.0.0 =
+* Initial release
 
 == Upgrade Notice ==
-
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
-
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`
+WEN Featured Image
