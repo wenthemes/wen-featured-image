@@ -732,6 +732,10 @@ class Wen_Featured_Image_Admin {
       return;
     }
 
+    if ( 'auto-draft' == get_post_status( $post_id ) ){
+      return;
+    }
+
     // Field option
     $post_types = array();
     if ( isset( $this->options['required_cpt'] ) ) {
