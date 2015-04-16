@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WEN Featured Image\n"
-"POT-Creation-Date: 2015-03-26 11:26+0545\n"
-"PO-Revision-Date: 2015-03-26 11:26+0545\n"
+"POT-Creation-Date: 2015-04-16 15:15+0545\n"
+"PO-Revision-Date: 2015-04-16 15:16+0545\n"
 "Last-Translator: WEN Themes <info@wenthemes.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -71,6 +71,7 @@ msgstr ""
 #: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:207
 #: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:218
 #: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:393
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:820
 msgid "Featured Image"
 msgstr ""
 
@@ -99,8 +100,16 @@ msgstr ""
 msgid "Set As Featured"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:788
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:792
 msgid "Settings"
+msgstr ""
+
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:819
+msgid "Show All"
+msgstr ""
+
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:821
+msgid "No Featured Image"
 msgstr ""
 
 #: ../../wen-featured-image/admin/partials/wen-featured-image-admin-display.php:21

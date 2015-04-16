@@ -240,9 +240,8 @@ class Wen_Featured_Image {
 
     // Select for filtering
     $this->loader->add_action( 'restrict_manage_posts', $plugin_admin, 'wfi_table_filtering' );
-    // $this->loader->add_action( 'admin_footer', $plugin_admin, 'test' );
+    // Query manipulation according to selected value
     $this->loader->add_filter( 'parse_query', $plugin_admin, 'wfi_query_filtering' );
-    // $this->loader->add_filter( 'pre_get_posts', $plugin_admin, 'wfi_filtering_query_for_listing' );
 
 	}
 
