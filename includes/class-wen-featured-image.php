@@ -87,7 +87,7 @@ class Wen_Featured_Image {
 	public function __construct() {
 
 		$this->wen_featured_image = 'wen-featured-image';
-		$this->version = '1.0.0';
+		$this->version = '1.0.1';
 
     $this->load_dependencies();
     $this->set_locale();
