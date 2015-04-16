@@ -822,5 +822,40 @@ class Wen_Featured_Image_Admin {
     echo '</select>';
 
   }
+  /**
+   * Query filtering in the post listing.
+   *
+   * @since    1.0.1
+   */
+  function wfi_query_filtering(){
+
+    global $pagenow;
+    $qv = &$query->query_vars;
+    if ( is_admin() && $pagenow == 'edit.php' ){
+
+      $qv['meta_query'] = array();
+      if( !empty( $_GET['filter-wfi'] ) ) {
+
+        if ('yes' == $_GET['filter-wfi'] ) {
+            $qv['meta_query'][] = array(
+               'key'     => '_thumbnail_id',
+               'compare' => '',
+               'value'   => 0,
+            );
+        } // end if yes
+
+        if ('no' == $_GET['filter-wfi'] ) {
+            $qv['meta_query'][] = array(
+               'key'     => '_thumbnail_id',
+               'compare' => 'NOT EXISTS',
+               'value'   => '',
+            );
+        } // end if no
+
+      } // end if not empty
+
+    } //end if is_admin
+
+  } // end function
 
 }
