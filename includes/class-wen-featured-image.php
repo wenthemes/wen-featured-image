@@ -238,6 +238,10 @@ class Wen_Featured_Image {
     // Settings links in plugin listing
     $this->loader->add_filter( "plugin_action_links_" . WEN_FEATURED_IMAGE_BASE_FILE , $plugin_admin, 'add_links_in_plugin_listing' );
 
+    // Select for filtering
+    $this->loader->add_action( 'restrict_manage_posts', $plugin_admin, 'wfi_table_filtering' );
+
+
 	}
 
 	/**
