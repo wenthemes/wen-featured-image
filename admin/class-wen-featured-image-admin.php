@@ -808,7 +808,7 @@ class Wen_Featured_Image_Admin {
     foreach ( $this->options['image_column_cpt'] as $post_type => $val ) {
         $allowed[]= $val;
     }
-    if ( !in_array($typenow,  $allowed )  ) {
+    if ( ! in_array($typenow,  $allowed )  ) {
         return;
     }
     $selected_now = '';
@@ -822,24 +822,33 @@ class Wen_Featured_Image_Admin {
     echo '</select>';
 
   }
+
   /**
    * Query filtering in the post listing.
    *
    * @since    1.0.1
    */
-  function wfi_query_filtering(){
+  function wfi_query_filtering( $query ){
 
-    global $pagenow;
+    global $pagenow, $typenow;
     $qv = &$query->query_vars;
-    if ( is_admin() && $pagenow == 'edit.php' ){
 
-      $qv['meta_query'] = array();
+    $allowed = array();
+    foreach ( $this->options['image_column_cpt'] as $post_type => $val ) {
+        $allowed[]= $val;
+    }
+
+    if ( is_admin() && $pagenow == 'edit.php' && in_array( $typenow,  $allowed ) ){
+
+      if( ! isset( $qv['meta_query'] ) ){
+        $qv['meta_query'] = array();
+      }
       if( !empty( $_GET['filter-wfi'] ) ) {
 
         if ('yes' == $_GET['filter-wfi'] ) {
             $qv['meta_query'][] = array(
                'key'     => '_thumbnail_id',
-               'compare' => '',
+               'compare' => '>',
                'value'   => 0,
             );
         } // end if yes
