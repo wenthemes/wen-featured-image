@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WEN Featured Image\n"
-"POT-Creation-Date: 2015-04-16 15:15+0545\n"
-"PO-Revision-Date: 2015-04-16 15:16+0545\n"
+"POT-Creation-Date: 2015-05-01 14:34+0545\n"
+"PO-Revision-Date: 2015-05-01 14:34+0545\n"
 "Last-Translator: WEN Themes <info@wenthemes.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -21,130 +21,96 @@ msgstr ""
 msgid "Are you sure?"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:139
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:141
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:138
 msgid "WEN Featured Image"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:165
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:161
 msgid "Image Column Settings"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:167
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:163
 msgid "Enable For"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:170
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:166
 msgid "Required Featured Image Settings"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:172
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:168
 msgid "Make Required For"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:174
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:170
 msgid "Required Message"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:177
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:173
 msgid "Message Settings"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:179
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:175
 msgid "Show Message For"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:181
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:177
 msgid "Before Image"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:183
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:179
 msgid "After Image"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:196
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:192
 #, php-format
 msgid "Enable / Disable %s column in listings."
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:196
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:207
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:218
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:393
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:820
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:192
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:203
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:214
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:389
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:816
 msgid "Featured Image"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:207
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:203
 #, php-format
 msgid "These messages will be displayed in the %s metabox."
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:218
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:214
 #, php-format
 msgid "Make %s required."
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:232
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:228
 #: ../../wen-featured-image/includes/class-wen-featured-image.php:167
 msgid "Featured Image is required to publish."
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:515
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:522
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:511
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:518
 msgid "Select Image"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:515
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:522
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:511
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:518
 msgid "Set As Featured"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:792
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:788
 msgid "Settings"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:819
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:815
 msgid "Show All"
 msgstr ""
 
-#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:821
+#: ../../wen-featured-image/admin/class-wen-featured-image-admin.php:817
 msgid "No Featured Image"
 msgstr ""
 
-#: ../../wen-featured-image/admin/partials/wen-featured-image-admin-display.php:21
-msgid "Settings saved."
-msgstr ""
-
-#: ../../wen-featured-image/admin/partials/wen-featured-image-admin-display.php:64
+#: ../../wen-featured-image/admin/partials/wen-featured-image-admin-display.php:58
 msgid "Save Changes"
-msgstr ""
-
-#: ../../wen-featured-image/wen-addons/wen_addons.php:56
-#: ../../wen-featured-image/wen-addons/wen_addons.php:118
-msgid "WEN Addons"
-msgstr ""
-
-#: ../../wen-featured-image/wen-addons/wen_addons.php:139
-msgid "Read more"
-msgstr ""
-
-#: ../../wen-featured-image/wen-addons/wen_addons.php:150
-msgid "Installed"
-msgstr ""
-
-#: ../../wen-featured-image/wen-addons/wen_addons.php:156
-msgid "Buy Now"
-msgstr ""
-
-#: ../../wen-featured-image/wen-addons/wen_addons.php:159
-msgid "Install now"
-msgstr ""
-
-#: ../../wen-featured-image/wen-addons/wen_addons.php:193
-msgid "Version"
-msgstr ""
-
-#: ../../wen-featured-image/wen-addons/wen_addons.php:199
-msgid "No addons available"
 msgstr ""
