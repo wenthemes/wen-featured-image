@@ -783,7 +783,7 @@ class Wen_Featured_Image_Admin {
     $url = add_query_arg( array(
         'page' => $this->wen_featured_image
       ),
-      admin_url( 'admin.php' )
+      admin_url( 'options-general.php' )
     );
     $settings_link = '<a href="' . esc_url( $url ) . '">'. esc_html( __( 'Settings', 'wen-featured-image' ) ) . '</a>';
     array_unshift( $links, $settings_link );
