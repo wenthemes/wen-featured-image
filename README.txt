@@ -1,10 +1,10 @@
 === WEN Featured Image ===
 Contributors: wenthemes
 Donate link: http://wenthemes.com
-Tags: image, featured image, admin, media, upload
-Requires at least: 3.8
+Tags: image, featured image, admin, media, upload, images,
+Requires at least: 4.0
 Tested up to: 4.2
-Stable tag: 1.0.1
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +15,10 @@ Add featured image column in listings. Add/change/remove featured image directly
 <h3>WEN Featured Image</h3>WEN Featured Image helps you to manage featured image for your posts or pages in easy way. Featured image is displayed in the separate column in the listings. You can easily add/edit/remove featured image from the listing page. You can also force featured image for selected post types.
 
 Plugin: [Home Page](http://wenthemes.com/item/wordpress-plugins/wen-featured-image/)
+
+<h4>Translation</h4>
+
+* Serbo-Croatian - [Borisa Djuraskovic](http://webhostinggeeks.com/)
 
 If you like this plugin, please [rate and review](http://wordpress.org/support/view/plugin-reviews/wen-featured-image).
 If you have any question, suggestion or issue, please [post here](http://wordpress.org/support/plugin/wen-featured-image).
@@ -57,6 +61,11 @@ Nice, make a post on the [Support Forum](http://wordpress.org/support/plugin/wen
 2. Plugin Settings
 
 == Changelog ==
+
+= 1.1 =
+* Language: Added Serbo-Croatian language
+* Compatibility: Compatibility check with WP 4.2
+* Fix: Minor bug fixes
 
 = 1.0.1 =
 * New: Select dropdown in listing to filter posts
