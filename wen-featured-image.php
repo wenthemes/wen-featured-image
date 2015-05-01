@@ -38,11 +38,6 @@ define( 'WEN_FEATURED_IMAGE_BASE_FILE', plugin_basename( __FILE__ ) );
 define( 'WEN_FEATURED_IMAGE_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
 define( 'WEN_FEATURED_IMAGE_URL', rtrim( plugin_dir_url( __FILE__ ), '/' ) );
 
-
-//  Load WEN Addons
-require_once WEN_FEATURED_IMAGE_DIR . '/wen-addons/wen_addons.php';
-
-
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-wen-featured-image-activator.php
