@@ -19,7 +19,7 @@ msgstr ""
 "Language: en_US\n"
 "X-Poedit-SearchPath-0: ../../wen-featured-image\n"
 
-#: admin/class-wen-featured-image-admin.php:123
+#: admin/class-wen-featured-image-admin.php:104
 msgid "Are you sure?"
 msgstr ""
 
@@ -27,86 +27,86 @@ msgstr ""
 msgid "WEN Featured Image"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:161
+#: admin/class-wen-featured-image-admin.php:142
 msgid "Image Column Settings"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:163
+#: admin/class-wen-featured-image-admin.php:144
 msgid "Enable For"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:166
+#: admin/class-wen-featured-image-admin.php:147
 msgid "Required Featured Image Settings"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:168
+#: admin/class-wen-featured-image-admin.php:149
 msgid "Make Required For"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:170
+#: admin/class-wen-featured-image-admin.php:151
 msgid "Required Message"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:173
+#: admin/class-wen-featured-image-admin.php:154
 msgid "Message Settings"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:175
+#: admin/class-wen-featured-image-admin.php:156
 msgid "Show Message For"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:177
+#: admin/class-wen-featured-image-admin.php:158
 msgid "Before Image"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:179
+#: admin/class-wen-featured-image-admin.php:160
 msgid "After Image"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:192
+#: admin/class-wen-featured-image-admin.php:173
 msgid "Enable / Disable %s column in listings."
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:192
-#: admin/class-wen-featured-image-admin.php:203
-#: admin/class-wen-featured-image-admin.php:214
-#: admin/class-wen-featured-image-admin.php:389
-#: admin/class-wen-featured-image-admin.php:816
+#: admin/class-wen-featured-image-admin.php:173
+#: admin/class-wen-featured-image-admin.php:184
+#: admin/class-wen-featured-image-admin.php:195
+#: admin/class-wen-featured-image-admin.php:370
+#: admin/class-wen-featured-image-admin.php:797
 msgid "Featured Image"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:203
+#: admin/class-wen-featured-image-admin.php:184
 msgid "These messages will be displayed in the %s metabox."
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:214
+#: admin/class-wen-featured-image-admin.php:195
 msgid "Make %s required."
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:228
+#: admin/class-wen-featured-image-admin.php:209
 #: includes/class-wen-featured-image.php:167
 msgid "Featured Image is required to publish."
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:511
-#: admin/class-wen-featured-image-admin.php:518
+#: admin/class-wen-featured-image-admin.php:492
+#: admin/class-wen-featured-image-admin.php:499
 msgid "Select Image"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:511
-#: admin/class-wen-featured-image-admin.php:518
+#: admin/class-wen-featured-image-admin.php:492
+#: admin/class-wen-featured-image-admin.php:499
 msgid "Set As Featured"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:788
+#: admin/class-wen-featured-image-admin.php:769
 msgid "Settings"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:815
+#: admin/class-wen-featured-image-admin.php:796
 msgid "Show All"
 msgstr ""
 
-#: admin/class-wen-featured-image-admin.php:817
+#: admin/class-wen-featured-image-admin.php:798
 msgid "No Featured Image"
 msgstr ""
 
