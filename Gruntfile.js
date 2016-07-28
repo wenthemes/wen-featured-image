@@ -97,7 +97,7 @@ module.exports = function( grunt ) {
 		// Push to SVN.
 		push_svn:{
 			options: {
-				username: 'rabmalin',
+				username: 'wenthemes',
 				password: 'passwordhere',
 				remove: true
 			},
