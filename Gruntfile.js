@@ -20,9 +20,9 @@ module.exports = function( grunt ) {
 
 		// Setting folder templates.
 		dirs: {
-			js: 'js',
-			css: 'css',
-			images: 'images'
+			js: 'admin/js',
+			css: 'admin/css',
+			images: 'admin/images'
 		},
 
 		// Other options.

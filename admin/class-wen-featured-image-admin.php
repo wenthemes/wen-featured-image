@@ -38,7 +38,8 @@ class Wen_Featured_Image_Admin {
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
-  private $version;
+	private $version;
+
 	private $options;
 
 	/**
@@ -51,7 +52,7 @@ class Wen_Featured_Image_Admin {
 	public function __construct( $wen_featured_image, $version, $options ) {
 
 		$this->wen_featured_image = $wen_featured_image;
-    $this->version = $version;
+		$this->version = $version;
 		$this->options = $options;
 
 	}
@@ -63,27 +64,17 @@ class Wen_Featured_Image_Admin {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Wen_Featured_Image_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Wen_Featured_Image_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+	    global $pagenow;
 
-    global $pagenow;
+	    if ( 'edit.php' !== $pagenow ) {
+			return;
+	    }
 
-    if ( 'edit.php' != $pagenow ) {
-      return;
-    }
+	    wp_enqueue_style( 'thickbox' );
 
-    wp_enqueue_style('thickbox');
+	    $min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		wp_enqueue_style( $this->wen_featured_image, plugin_dir_url( __FILE__ ) . 'css/wen-featured-image-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->wen_featured_image, plugin_dir_url( __FILE__ ) . 'css/wen-featured-image-admin' . $min . '.css', array(), $this->version, 'all' );
 
 	}
 
@@ -94,37 +85,27 @@ class Wen_Featured_Image_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Wen_Featured_Image_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Wen_Featured_Image_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+	    global $pagenow;
 
-    global $pagenow;
+	    if ( 'edit.php' !== $pagenow ) {
+	      return;
+	    }
 
-    if ( 'edit.php' != $pagenow ) {
-      return;
-    }
+	    wp_enqueue_script( 'thickbox' );
 
-    wp_enqueue_script('thickbox');
+	    wp_enqueue_media();
 
-    wp_enqueue_media();
+	    $min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		wp_register_script( $this->wen_featured_image, plugin_dir_url( __FILE__ ) . 'js/wen-featured-image-admin.js', array( 'jquery' ), $this->version, false );
-    $extra_array = array(
-      'ajaxurl' => admin_url( 'admin-ajax.php' ),
-      'lang' => array(
-          'are_you_sure' => __( 'Are you sure?', 'wen-featured-image' ),
-        ),
-      );
-    wp_localize_script( $this->wen_featured_image, 'WFI_OBJ', $extra_array );
-    wp_enqueue_script( $this->wen_featured_image );
+		wp_register_script( $this->wen_featured_image, plugin_dir_url( __FILE__ ) . 'js/wen-featured-image-admin' . $min . '.js', array( 'jquery' ), $this->version, false );
+		$extra_array = array(
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'lang' => array(
+				'are_you_sure' => __( 'Are you sure?', 'wen-featured-image' ),
+				),
+			);
+	    wp_localize_script( $this->wen_featured_image, 'WFI_OBJ', $extra_array );
+	    wp_enqueue_script( $this->wen_featured_image );
 
 	}
 
