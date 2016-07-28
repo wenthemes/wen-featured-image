@@ -1,18 +1,6 @@
 <?php
 
 /**
- * The plugin bootstrap file
- *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
- *
- * @link              http://wenthemes.com
- * @since             1.0.0
- * @package           Wen_Featured_Image
- *
- * @wordpress-plugin
  * Plugin Name:       WEN Featured Image
  * Plugin URI:        http://wenthemes.com/item/wordpress-plugins/wen-featured-image/
  * Description:       Add featured image column in listings. You can easily add/change/remove featured image from the listing page.
