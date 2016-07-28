@@ -3,8 +3,8 @@ Contributors: wenthemes
 Donate link: http://wenthemes.com
 Tags: image, featured image, admin, media, upload, images,
 Requires at least: 4.0
-Tested up to: 4.3
-Stable tag: 1.2
+Tested up to: 4.6
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,10 @@ Nice, make a post on the [Support Forum](http://wordpress.org/support/plugin/wen
 2. Plugin Settings
 
 == Changelog ==
+
+= 1.3.0 =
+* Compatibility check - WP 4.6
+* Fix: Minor bug fixes
 
 = 1.2 =
 * Fix: Change page title to h1 tag
